@@ -6,11 +6,11 @@ export default {
   theme: {
     extend: {
       textShadow: {
-        custom: "0px 4px 4px rgba(0, 99, 167, 0.25)",
+        'custom': '0px 4px 4px rgba(0, 99, 167, 0.25)',
       },
     },
   },
-  plugins: [daisyui],
+  plugins: [daisyui, require('tailwindcss-textshadow')], 
   daisyui: {
     themes: [
       {
@@ -19,8 +19,9 @@ export default {
           secondary: "#00d100",
           accent: "#191919",
           neutral: "#CFE3EE",
-          "base-100": "#F4F5F7",
-          "base-200": "#191919",
+          "base-100": "#CDE1EF",
+          "base-200": "#EAF3F9",
+          "base-300": "#F1F9FF",
           info: "#00e1ff",
           success: "#4DAF6E",
           warning: "#ff942e",
