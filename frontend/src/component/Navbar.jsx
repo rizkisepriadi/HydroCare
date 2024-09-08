@@ -58,7 +58,7 @@ export default function Navbar() {
             <img src={Logo} alt="logo" className="size-8" />
             <h1 className="text-primary text-xl font-extrabold">HydroCare</h1>
           </div>
-          <ul className="flex gap-14 items-center pl-[110px] text-xl text-primary font-semibold">
+          <ul className="flex gap-14 items-center pl-[110px] text-xl text-primary font-semibold lg:gap-5 lg:text-base ">
             <li>Home</li>
             <li>About Us</li>
             <li>Donasi</li>
