@@ -36,6 +36,9 @@ export default function Homepage() {
               </p>
             </div>
           </div>
+          <div className="flex items-center justify-center pb-5"> 
+            <p className='text-center text-xl text-[#0063A7] font-medium text-shadow-custom'>Kita Ubah Setiap Tetes Air Menjadi Harapan Baru <br></br> Bagi Mereka yang Kesulitan Mendapatkan Air Bersih.Mari Bergerak untuk<br></br> Masa Depan yang Lebih Baik.</p>
+          </div>
         </div>
       </section>
       {/* Invitation */}

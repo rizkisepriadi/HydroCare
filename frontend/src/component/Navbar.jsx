@@ -6,7 +6,8 @@ import { Button } from "./Button.module";
 export default function Navbar() {
   const isLargeScreen = useMediaQuery("(max-width: 768px)");
   return (
-    <div>
+    <header className="fixed flex justify-between items-center pl-3 lg:flex-row lg:py-[14px]">
+      <img src={Logo} alt="logo" className="size-5  md:size-[42px]" />
       {isLargeScreen ? (
         <header className="w-screen fixed flex justify-between items-center pl-3 pt-3">
           <img src={Logo} alt="logo" className="size-8" />
@@ -34,7 +35,7 @@ export default function Navbar() {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm md:menu-md dropdown-content mt-3 z-[1] p-10  shadow bg-base-100 rounded-sm w-screen absolute right-0 md:mx-5 md:w-72"
+                className="menu menu-sm md:menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 absolute right-0 md:mx-5 md:w-72"
               >
                 <li className="md:text-base" onClick={() => scroll("about")}>
                   About
@@ -45,13 +46,16 @@ export default function Navbar() {
                 <li className="md:text-base" onClick={() => scroll("work")}>
                   Work
                 </li>
-                <li className="md:text-base" onClick={() => scroll("contact")}>
+                <li
+                  className="md:text-base"
+                  onClick={() => scroll("contact")}
+                >
                   Contact
                 </li>
               </ul>
             </div>
           </div>
-        </header>
+        </div>
       ) : (
         <header className="fixed p-8 flex justify-between top-0 right-0 left-0 items-center">
           <div className="flex items-center">
@@ -70,6 +74,6 @@ export default function Navbar() {
           </div>
         </header>
       )}
-    </div>
+    </header>
   );
 }

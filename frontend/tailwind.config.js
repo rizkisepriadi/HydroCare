@@ -6,11 +6,11 @@ export default {
   theme: {
     extend: {
       textShadow: {
-        custom: "0px 4px 4px rgba(0, 99, 167, 0.25)",
+        'custom': '0px 4px 4px rgba(0, 99, 167, 0.25)',
       },
     },
   },
-  plugins: [daisyui],
+  plugins: [daisyui, require('tailwindcss-textshadow')], 
   daisyui: {
     themes: [
       {
