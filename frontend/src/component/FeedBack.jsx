@@ -1,4 +1,6 @@
 import React from "react";
+import Pagination from "./Pagination";
+import { useState } from "react";
 
 export default function FeedBack() {
   return (
@@ -12,13 +14,7 @@ export default function FeedBack() {
           <br />
           10.000 penduduk
         </p>
-        <h1 className="text-base font-semibold text-center pt-[35px] px-10">
-          "Bantuan dan donasi sangat pentingbagi negara kami, karena el-nino
-          ini membuat bencara kekeringan yangberkepanjangan!!"
-        </h1>
-      </div>
-      <div>
-        
+        <Pagination />
       </div>
     </section>
   );

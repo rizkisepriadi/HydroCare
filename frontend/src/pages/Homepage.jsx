@@ -45,7 +45,7 @@ export default function Homepage() {
             <img
               src={Waterfall}
               alt="Main Waterfall Image"
-              className="rounded-2xl shadow-xl w-[366.79px] h-[193.06px]"
+              className="rounded-2xl w-[366.79px] h-[193.06px]"
             />
             <div className="absolute top-5 left-[-30px] rounded-[30px]">
               <img
