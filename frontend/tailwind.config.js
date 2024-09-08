@@ -10,7 +10,7 @@ export default {
       },
     },
   },
-  plugins: [daisyui, require('tailwindcss-textshadow')], 
+  plugins: [daisyui], 
   daisyui: {
     themes: [
       {
