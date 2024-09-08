@@ -46,16 +46,13 @@ export default function Navbar() {
                 <li className="md:text-base" onClick={() => scroll("work")}>
                   Work
                 </li>
-                <li
-                  className="md:text-base"
-                  onClick={() => scroll("contact")}
-                >
+                <li className="md:text-base" onClick={() => scroll("contact")}>
                   Contact
                 </li>
               </ul>
             </div>
           </div>
-        </div>
+        </header>
       ) : (
         <header className="fixed p-8 flex justify-between top-0 right-0 left-0 items-center">
           <div className="flex items-center">
