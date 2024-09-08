@@ -5,7 +5,7 @@ export function Button({ text, link }) {
     <div>
       <a
         href={link}
-        className="btn bg-neutral border-primary rounded-[100px] text-xl text-primary font-semibold"
+        className="btn bg-neutral border-primary rounded-[100px] xl:text-xl text-base text-primary font-semibold"
       >
         {text}
       </a>
