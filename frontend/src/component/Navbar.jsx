@@ -9,8 +9,9 @@ export default function Navbar() {
     <header className="fixed flex justify-between items-center pl-3 lg:flex-row lg:py-[14px]">
       <img src={Logo} alt="logo" className="size-5  md:size-[42px]" />
       {isLargeScreen ? (
-        <div className="flex px-3">
-          <div className="navbar-start relative">
+        <header className="w-screen fixed flex justify-between items-center pl-3 pt-3">
+          <img src={Logo} alt="logo" className="size-8" />
+          <div className="justify-start relative">
             <div className="dropdown">
               <div
                 tabIndex={0}
@@ -56,7 +57,22 @@ export default function Navbar() {
           </div>
         </div>
       ) : (
-        <></>
+        <header className="fixed p-8 flex justify-between top-0 right-0 left-0 items-center">
+          <div className="flex items-center">
+            <img src={Logo} alt="logo" className="size-10" />
+            <h1 className="text-primary text-xl font-extrabold">HydroCare</h1>
+          </div>
+          <ul className="flex gap-10 items-center justify-items-center xl:text-xl text-primary font-semibold text-base ">
+            <li>Home</li>
+            <li>About Us</li>
+            <li>Donasi</li>
+            <li>Contanct</li>
+          </ul>
+          <div className="flex gap-3">
+            <Button text={"Sign In"} />
+            <Button text={"Login"} />
+          </div>
+        </header>
       )}
     </header>
   );
