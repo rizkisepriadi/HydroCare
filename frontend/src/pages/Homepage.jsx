@@ -25,8 +25,6 @@ export default function Homepage() {
         </div>
         <OverviewSection />
       </section>
-
-
     </main>
   )
 }
