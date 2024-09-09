@@ -5,7 +5,7 @@ import { useState } from "react";
 export default function FeedBack() {
   return (
     <section className="bg-base-200">
-      <div className="flex flex-col items-center text-primary">
+      <div className="flex flex-col items-center text-primary pb-7">
         <h1 className="text-base font-semibold pt-[22px]">
           Pendapat Mereka Tentang HydroCare
         </h1>
