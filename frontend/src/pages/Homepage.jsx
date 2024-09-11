@@ -6,6 +6,7 @@ import Person from "../assets/Person.svg";
 import Lake from "../assets/Lake.svg";
 import { JoinButton } from "../component/Button.module.jsx";
 import SquareBar from "../component/SquareBar.jsx";
+import Temp from "../assets/Temp.svg";
 
 export default function Homepage() {
   return (
@@ -75,7 +76,7 @@ export default function Homepage() {
       {/* Feed Back */}
       <FeedBack />
       {/* About  */}
-      <div className="bg-base-300 ">
+      <div className="bg-white bg-gradient-to-b from-white via-white to-base-100  ">
         <h1 className="text-primary text-xl font-extrabold text-center py-10">
           Selamatkan Air, Selamatkan <br />
           Masa Depan Kita
@@ -115,6 +116,12 @@ export default function Homepage() {
               "Lebih dari 80% air limbah yang ada diseluruh dunia dibuang ke lingkungan tanpa diolah."
             }
           />
+        </div>
+      </div>
+      <div className="bg-base-100">
+        <div className="pt-[58.35px]">
+          <img src={Temp} alt="Gambar template" className="" />
+          
         </div>
       </div>
     </div>
