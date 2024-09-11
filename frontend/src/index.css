@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+    .text-shadow-custom {
+      text-shadow: 0px 4px 4px rgba(0, 99, 167, 0.25);
+    }
+}
+
+.p-section {
+      @apply text-center lg:text-[20px] 2xl:leading-7 text-[#0063A7] font-medium text-shadow-custom text-sm;
+  }
+

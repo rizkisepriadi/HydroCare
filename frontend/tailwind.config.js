@@ -8,6 +8,16 @@ export default {
       textShadow: {
         'custom': '0px 4px 4px rgba(0, 99, 167, 0.25)',
       },
+      fontSize: {
+        'title-1': '40px',
+        'title-2': '36px',
+        'title-3': '32px',
+        'title-4': '28px',
+        'Base-1': '25px',
+        'Base-2': '24px',
+        'Base-3': '20px',
+        'Base-4': '16px',
+      },
     },
   },
   plugins: [daisyui], 
