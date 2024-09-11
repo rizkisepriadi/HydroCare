@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../component/Navbar.jsx";
+import OverviewSection from "../component/OverviewSection.jsx";
 import FeedBack from "../component/FeedBack.jsx";
 import Waterfall from "../assets/waterfall.svg";
 import Person from "../assets/Person.svg";
@@ -10,36 +11,45 @@ export default function Homepage() {
   return (
     <div className="">
       <Navbar />
-      {/* Hero */}
+
+      {/* Home*/}
       <section className="bg-[url('/src/assets/HOME.svg')] bg-cover bg-center h-screen">
-        {/* section 1 */}
-        <div className="flex items-center justify-center h-full">
+        <div className="flex flex-col items-center justify-center h-full w-full">
           {/* container */}
-          <div>
+          <div className="lg:mb-10 2xl:mb-24 max-w-[680px]">
+
+            {/* Text di atas */}
             <div className="flex items-center justify-center pb-5">
-              <p className="text-center text-xl text-[#0063A7] font-medium text-shadow-custom">
+              <p className="p-section">
                 Bersama Menciptakan Dunia Dengan Air Bersih
               </p>
             </div>
+
+            {/* Heading utama */}
             <div className="flex items-center justify-center pb-5">
               <div className="flex items-center justify-center">
-                <h1 className="text-center text-8xl tracking-[0.2em] font-extrabold text-[#0063A7] text-shadow-custom">
-                  HydroCare
+                <h1 className="text-center lg:text-6xl 2xl:text-7xl tracking-[0.2em] font-extrabold text-[#0063A7] text-shadow-custom text-5xl">
+                  HydroCar<span className="tracking-normal">e</span>
                 </h1>
               </div>
             </div>
+
+            {/* Deskripsi */}
             <div className="flex items-center justify-center pb-5">
-              <p className="text-center text-xl text-[#0063A7] font-medium text-shadow-custom">
-                Kita Ubah Setiap Tetes Air Menjadi Harapan Baru <br></br> Bagi
-                Mereka yang Kesulitan Mendapatkan Air Bersih.Mari Bergerak untuk
-                <br></br> Masa Depan yang Lebih Baik.
+              <p className="p-section">
+                Kita Ubah Setiap Tetes Air Menjadi Harapan Baru Bagi Mereka yang Kesulitan Mendapatkan Air Bersih. Mari Bergerak
+                untuk Masa Depan yang Lebih Baik.
               </p>
             </div>
           </div>
         </div>
+        {/* Overview Section */}
+        <OverviewSection />
       </section>
+
+
       {/* Invitation */}
-      <section>
+      <section className="w-full">
         <div className="relative flex justify-center bg-base-100">
           <div className="relative">
             <img
@@ -71,6 +81,7 @@ export default function Homepage() {
           <JoinButton />
         </div>
       </section>
+
       {/* Feed Back */}
       <FeedBack />
     </div>
