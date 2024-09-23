@@ -53,7 +53,7 @@ export default function Navbar() {
           </div>
         </header>
       ) : (
-        <header className="fixed p-8 flex justify-between top-0 right-0 left-0 items-center">
+        <header className="fixed p-8 flex justify-between top-0 right-0 left-0 items-center z-50">
           <div className="flex items-center">
             <img src={Logo} alt="logo" className="size-10" />
             <h1 className="text-primary text-xl font-extrabold">HydroCare</h1>

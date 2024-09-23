@@ -11,7 +11,7 @@ import Temp from "../assets/Temp.svg";
 
 export default function Homepage() {
   return (
-    <div className="">
+    <div>
       <Navbar />
 
       {/* Home*/}
@@ -37,7 +37,7 @@ export default function Homepage() {
             </div>
 
             {/* Deskripsi */}
-            <div className="flex items-center justify-center pb-5">
+            <div className="flex items-center justify-center pb-5 px-2">
               <p className="p-section">
                 Kita Ubah Setiap Tetes Air Menjadi Harapan Baru Bagi Mereka yang Kesulitan Mendapatkan Air Bersih. Mari Bergerak
                 untuk Masa Depan yang Lebih Baik.
@@ -51,43 +51,58 @@ export default function Homepage() {
 
 
       {/* Invitation */}
-      <section className="w-full">
-        <div className="relative flex justify-center bg-base-100">
-          <div className="relative">
-            <img
-              src={Waterfall}
-              alt="Main Waterfall Image"
-              className="rounded-2xl w-[366.79px] h-[193.06px]"
-            />
-            <div className="absolute top-5 left-[-30px] rounded-[30px]">
-              <img
-                src={Person}
-                alt="Small Left Image"
-                className="rounded-[20px] w-[107.22px] h-[107.04]"
-              />
+      <section className="w-full h-screen">
+        <div className="relative flex justify-center items-center mx-auto h-full">
+          <div className="flex flex-col justify-center items-center bg-base-100 max-h-[720px] mb-24 md:mb-20 w-full">
+            <div className="relative w-[500px] sm:w-[520px] md:w-[660px] flex justify-center items-center">
+              {/* Gambar Utama */}
+              <div className="w-[450px] h-[237.53px] md:w-[567px] md:h-[300px] rounded-2xl shadow-imgHero">
+                <img
+                  src={Waterfall}
+                  alt="Main Waterfall Image"
+                  className="w-full h-full object-cover rounded-2xl"
+                />
+              </div>
+
+              {/* Gambar Kecil Kiri */}
+              <div className="absolute top-5 left-0 md:top-6 xl:top-8 w-[80px] h-[80px] md:w-[115px] md:h-[115px] rounded-md shadow-img">
+                <img
+                  src={Person}
+                  alt="Small Left Image"
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              </div>
+
+              {/* Gambar Kecil Kanan */}
+              <div className="absolute bottom-4 right-5 md:bottom-5 xl:bottom-7 w-[80px] h-[80px] md:w-[100px] md:h-[100px] rounded-md shadow-img">
+                <img
+                  src={Lake}
+                  alt="Small Right Image"
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              </div>
             </div>
-            <div className="absolute bottom-5 right-[-20px] rounded-[30px]">
-              <img
-                src={Lake}
-                alt="Small Right Image"
-                className="rounded-[20px] w-[94.59px] h-[94.43px]"
-              />
+
+            <div className="flex justify-center items-center w-auto">
+              <div className="flex flex-col pt-8 px-2 items-center gap-8 pb-[26px] w-[500px] md:w-[680px]">
+                <p className="p-section">
+                  Bergabunglah dengan ribuan orang yang peduli untuk menghemat air
+                  bersih dan memastikan akses air untuk generasi mendatang.
+                </p>
+                <JoinButton />
+              </div>
             </div>
+        
           </div>
+
+          {/* Feed Back */}
+          <FeedBack />
         </div>
-        <div className="flex flex-col pt-8 items-center gap-8 pb-[26px]">
-          <h1 className="text-primary text-center text-base font-bold px-3">
-            Bergabunglah dengan ribuan orang yang peduli untuk menghemat air
-            bersih dan memastikan akses air untuk generasi mendatang.
-          </h1>
-          <JoinButton />
-        </div>
+        
       </section>
 
-      {/* Feed Back */}
-      <FeedBack />
       {/* About  */}
-      <div className="bg-white bg-gradient-to-b from-white via-white to-base-100  ">
+      <section className="bg-white bg-gradient-to-b from-white via-white to-base-100  ">
         <h1 className="text-primary text-xl font-extrabold text-center py-10">
           Selamatkan Air, Selamatkan <br />
           Masa Depan Kita
@@ -128,7 +143,8 @@ export default function Homepage() {
             }
           />
         </div>
-      </div>
+      </section>
+
       <div className="bg-base-100">
         <div className="pt-[58.35px]">
           <img src={Temp} alt="Gambar template" className="" />
