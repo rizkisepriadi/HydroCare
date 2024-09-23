@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import kutip from "../assets/kutip.svg";
 
 const TextCarousel = () => {
   const texts = [
-    "Bantuan dan donasi sangat pentingbagi negara kami, karena el-nino ini membuat bencara kekeringan yangberkepanjangan!!",
+    "Bantuan dan donasi sangat penting bagi negara kami, karena el-nino ini membuat bencana kekeringan yang dapat berkepanjangan!!",
     "Text 2",
     "Text 3",
     "Text 4",
@@ -21,21 +22,30 @@ const TextCarousel = () => {
   // }, [texts.length]);
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="text-base font-semibold text-center pt-[35px] px-10">
+    <div className="flex flex-col items-start max-w-[720px] flex-wrap">
+      <div className="m-1 pt-2 md:pt-0 w-[20px] h-[20px] md:w-[26px] md:h-[22px]">
+        <img
+          src={kutip}
+          alt="Main Waterfall Image"
+          className="object-cover w-auto h-auto"
+        />
+      </div>
+      <div className="text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold text-center md:text-left md:pt-0 text-primary">
         {texts[currentIndex]}
       </div>
-      <div className="flex pt-9 gap-[100px]">
+
+      {/*user*/} 
+      <div className="flex pt-1 w-full justify-between">
         <div className="flex gap-2">
           <div className="avatar">
             <div className="w-10 rounded-full">
               <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
             </div>
           </div>
-          <div className="flex text-primary">
+          <div className="flex justify-center items-center text-primary">
             <div className="flex flex-col">
-              <h1 className="text-xs font-extrabold">Jenny Wilson</h1>
-              <p className="text-[10px] font-medium">President of Amerika</p>
+              <h1 className="text-xs md:text-base font-extrabold">Jenny Wilson</h1>
+              <p className="text-[10px] md:text-xs font-medium">President of Amerika</p>
             </div>
           </div>
         </div>

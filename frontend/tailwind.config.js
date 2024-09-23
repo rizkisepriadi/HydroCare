@@ -8,6 +8,11 @@ export default {
       textShadow: {
         'custom': '0px 4px 4px rgba(0, 99, 167, 0.25)',
       },
+      boxShadow: {
+        'custom': '0px 0px 10px 1px rgba(0, 0, 0, 0.25)',
+        'imgHero' : 'inset 0px 10px 10px 1px rgba(0, 0, 0, 0.25), 0px 0px 10px 1px rgba(0, 0, 0, 0.25)',
+        'img': 'inset 10px 10px 5px 10px rgba(205, 225, 239, 1), inset -10px -10px 5px 10px rgba(205, 225, 239, 1) , 0px 0px 0px 10px rgba(205, 225, 239, 1)',
+      },
       fontSize: {
         'title-1': '40px',
         'title-2': '36px',
