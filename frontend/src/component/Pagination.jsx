@@ -44,7 +44,7 @@ const TextCarousel = () => {
             <span
               key={index}
               className={`w-3 h-3 mx-1 rounded-full transition duration-300 ${
-                index === currentIndex ? "bg-blue-600" : "bg-blue-200"
+                index === currentIndex ? "bg-primary" : "bg-blue-200"
               }`}
             />
           ))}
