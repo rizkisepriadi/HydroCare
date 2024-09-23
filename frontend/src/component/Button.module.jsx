@@ -25,3 +25,16 @@ export function JoinButton({ link }) {
     </div>
   );
 }
+
+export function CampanyeButton({ link }) {
+  return (
+    <div className="flex justify-center">
+      <button
+        href={link}
+        className="rounded-full px-6 py-2 font-bold text-primary bg-neutral shadow-md shadow-blue-400"
+      >
+        Ayo Bergabung
+      </button>
+    </div>
+  );
+}
