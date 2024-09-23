@@ -88,27 +88,17 @@ export default function Homepage() {
             <div className="flex justify-center items-center w-auto">
               <div className="flex flex-col pt-8 px-2 items-center gap-8 pb-[26px] w-[500px] md:w-[680px]">
                 <p className="p-section">
-                  Bergabunglah dengan ribuan orang yang peduli untuk menghemat air
-                  bersih dan memastikan akses air untuk generasi mendatang.
+                  Bergabunglah dengan ribuan orang yang peduli untuk menghemat
+                  air bersih dan memastikan akses air untuk generasi mendatang.
                 </p>
                 <JoinButton />
               </div>
             </div>
-        
           </div>
 
           {/* Feed Back */}
           <FeedBack />
         </div>
-        <div className="flex flex-col pt-8 items-center gap-8 pb-[26px]">
-          <h1 className="text-primary text-center text-base font-bold px-3">
-            Bergabunglah dengan ribuan orang yang peduli untuk menghemat air
-            bersih dan memastikan akses air untuk generasi mendatang.
-          </h1>
-          <JoinButton />
-        </div>
-        {/* Feed Back */}
-        <FeedBack />
       </section>
 
       {/* About  */}
