@@ -1,7 +1,7 @@
 import React from "react";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import Logo from "../assets/logo.svg";
-import { Button } from "./Button.module";
+import { Button } from "./button.module";
 
 export default function Navbar() {
   const isLargeScreen = useMediaQuery("(max-width: 768px)");

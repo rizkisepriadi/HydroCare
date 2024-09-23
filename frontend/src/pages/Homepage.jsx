@@ -1,13 +1,16 @@
 import React from "react";
-import Navbar from "../component/Navbar.jsx";
-import OverviewSection from "../component/OverviewSection.jsx";
-import FeedBack from "../component/FeedBack.jsx";
+import Navbar from "../component/navbar.jsx";
+import OverviewSection from "../component/overviewSection.jsx";
+import FeedBack from "../component/feedBack.jsx";
 import Waterfall from "../assets/waterfall.svg";
 import Person from "../assets/Person.svg";
 import Lake from "../assets/Lake.svg";
-import { JoinButton } from "../component/Button.module.jsx";
-import SquareBar from "../component/SquareBar.jsx";
-import Temp from "../assets/Temp.svg";
+import { JoinButton } from "../component/button.module.jsx";
+import SquareBar from "../component/squareBar.jsx";
+import CampanyeCard from "../component/campanyeCard.jsx";
+import BlogCard from "../component/blogCard.jsx";
+import Footer from "../component/footer.jsx";
+import FAQ from "../component/faq.jsx";
 
 export default function Homepage() {
   return (
@@ -19,7 +22,6 @@ export default function Homepage() {
         <div className="flex flex-col items-center justify-center h-full w-full">
           {/* container */}
           <div className="lg:mb-10 2xl:mb-24 max-w-[680px]">
-
             {/* Text di atas */}
             <div className="flex items-center justify-center pb-5">
               <p className="p-section">
@@ -39,8 +41,9 @@ export default function Homepage() {
             {/* Deskripsi */}
             <div className="flex items-center justify-center pb-5 px-2">
               <p className="p-section">
-                Kita Ubah Setiap Tetes Air Menjadi Harapan Baru Bagi Mereka yang Kesulitan Mendapatkan Air Bersih. Mari Bergerak
-                untuk Masa Depan yang Lebih Baik.
+                Kita Ubah Setiap Tetes Air Menjadi Harapan Baru Bagi Mereka yang
+                Kesulitan Mendapatkan Air Bersih. Mari Bergerak untuk Masa Depan
+                yang Lebih Baik.
               </p>
             </div>
           </div>
@@ -48,7 +51,6 @@ export default function Homepage() {
         {/* Overview Section */}
         <OverviewSection />
       </section>
-
 
       {/* Invitation */}
       <section className="w-full h-screen">
@@ -98,7 +100,15 @@ export default function Homepage() {
           {/* Feed Back */}
           <FeedBack />
         </div>
-        
+        <div className="flex flex-col pt-8 items-center gap-8 pb-[26px]">
+          <h1 className="text-primary text-center text-base font-bold px-3">
+            Bergabunglah dengan ribuan orang yang peduli untuk menghemat air
+            bersih dan memastikan akses air untuk generasi mendatang.
+          </h1>
+          <JoinButton />
+        </div>
+        {/* Feed Back */}
+        <FeedBack />
       </section>
 
       {/* About  */}
@@ -144,13 +154,31 @@ export default function Homepage() {
           />
         </div>
       </section>
+      {/* Campanye Card */}
+      <CampanyeCard />
 
-      <div className="bg-base-100">
-        <div className="pt-[58.35px]">
-          <img src={Temp} alt="Gambar template" className="" />
-          
+      {/* Blog */}
+      <div className="flex flex-col px-[30px]">
+        <h1 className="text-primary text-center font-extrabold text-xl">
+          Blog, Berita dan Event
+        </h1>
+        <div className="pt-9 flex flex-col pb">
+          <a href="#" className="flex justify-end text-primary pb-2">
+            Lihat Semua
+          </a>
+          <div className="flex flex-col gap-5">
+            <BlogCard />
+            <BlogCard />
+            <BlogCard />
+          </div>
         </div>
       </div>
+
+      {/* FAQ */}
+      <FAQ />
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
