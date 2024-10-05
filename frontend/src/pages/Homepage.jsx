@@ -1,7 +1,6 @@
 import React from "react";
-import Navbar from "../component/navbar.jsx";
-import OverviewSection from "../component/overviewSection.jsx";
-import FeedBack from "../component/feedBack.jsx";
+import Navbar from "../pageSection/navBar.jsx";
+import FeedBack from "../pageSection/feedBack.jsx";
 import Waterfall from "../assets/waterfall.svg";
 import Person from "../assets/Person.svg";
 import Lake from "../assets/Lake.svg";
@@ -9,56 +8,25 @@ import { JoinButton } from "../component/button.module.jsx";
 import SquareBar from "../component/squareBar.jsx";
 import CampanyeCard from "../component/campanyeCard.jsx";
 import BlogCard from "../component/blogCard.jsx";
-import Footer from "../component/footer.jsx";
-import FAQ from "../component/faq.jsx";
+import Footer from "../pageSection/footer.jsx";
+import FAQ from "../pageSection/faq.jsx";
+import Hero from "../pageSection/hero.jsx";
 
 export default function Homepage() {
   return (
     <div>
       <Navbar />
 
-      {/* Home*/}
-      <section className="bg-[url('/src/assets/HOME.svg')] bg-cover bg-center h-screen">
-        <div className="flex flex-col items-center justify-center h-full w-full">
-          {/* container */}
-          <div className="lg:mb-10 2xl:mb-24 max-w-[680px]">
-            {/* Text di atas */}
-            <div className="flex items-center justify-center pb-5">
-              <p className="p-section">
-                Bersama Menciptakan Dunia Dengan Air Bersih
-              </p>
-            </div>
-
-            {/* Heading utama */}
-            <div className="flex items-center justify-center pb-5">
-              <div className="flex items-center justify-center">
-                <h1 className="text-center lg:text-6xl 2xl:text-7xl tracking-[0.2em] font-extrabold text-[#0063A7] text-shadow-custom text-5xl">
-                  HydroCar<span className="tracking-normal">e</span>
-                </h1>
-              </div>
-            </div>
-
-            {/* Deskripsi */}
-            <div className="flex items-center justify-center pb-5 px-2">
-              <p className="p-section">
-                Kita Ubah Setiap Tetes Air Menjadi Harapan Baru Bagi Mereka yang
-                Kesulitan Mendapatkan Air Bersih. Mari Bergerak untuk Masa Depan
-                yang Lebih Baik.
-              </p>
-            </div>
-          </div>
-        </div>
-        {/* Overview Section */}
-        <OverviewSection />
-      </section>
+      {/* Hero*/}
+      <Hero />
 
       {/* Invitation */}
       <section className="w-full h-screen">
         <div className="relative flex justify-center items-center mx-auto h-full">
-          <div className="flex flex-col justify-center items-center bg-base-100 max-h-[720px] mb-24 md:mb-20 w-full">
-            <div className="relative w-[500px] sm:w-[520px] md:w-[660px] flex justify-center items-center">
+          <div className="flex flex-col justify-center items-center bg-base-100 max-h-[720px] mb-40 md:mb-28 w-full">
+            <div className="relative w-[350px] sm:w-[550px] md:w-[660px] flex justify-center items-center">
               {/* Gambar Utama */}
-              <div className="w-[450px] h-[237.53px] md:w-[567px] md:h-[300px] rounded-2xl shadow-imgHero">
+              <div className="w-[300px] h-[150px] sm:w-[500px] sm:h-[237.53px] md:w-[567px] md:h-[300px] rounded-2xl shadow-imgHero">
                 <img
                   src={Waterfall}
                   alt="Main Waterfall Image"
@@ -67,7 +35,7 @@ export default function Homepage() {
               </div>
 
               {/* Gambar Kecil Kiri */}
-              <div className="absolute top-5 left-0 md:top-6 xl:top-8 w-[80px] h-[80px] md:w-[115px] md:h-[115px] rounded-md shadow-img">
+              <div className="absolute top-5 left-0 md:top-6 xl:top-8 w-[60px] h-[60px] sm:w-[80px] sm:h-[80px] md:w-[115px] md:h-[115px] rounded-md shadow-img">
                 <img
                   src={Person}
                   alt="Small Left Image"
@@ -76,7 +44,7 @@ export default function Homepage() {
               </div>
 
               {/* Gambar Kecil Kanan */}
-              <div className="absolute bottom-4 right-5 md:bottom-5 xl:bottom-7 w-[80px] h-[80px] md:w-[100px] md:h-[100px] rounded-md shadow-img">
+              <div className="absolute bottom-4 right-0 md:bottom-5 xl:bottom-7 w-[60px] h-[60px] sm:w-[80px] sm:h-[80px] md:w-[100px] md:h-[100px] rounded-md shadow-img">
                 <img
                   src={Lake}
                   alt="Small Right Image"
@@ -86,7 +54,7 @@ export default function Homepage() {
             </div>
 
             <div className="flex justify-center items-center w-auto">
-              <div className="flex flex-col pt-8 px-2 items-center gap-8 pb-[26px] w-[500px] md:w-[680px]">
+              <div className="flex flex-col pt-4 px-2 items-center gap-5 pb-[26px] w-[380] md:w-[680px]">
                 <p className="p-section">
                   Bergabunglah dengan ribuan orang yang peduli untuk menghemat
                   air bersih dan memastikan akses air untuk generasi mendatang.
@@ -122,26 +90,27 @@ export default function Homepage() {
             </p>
           </div>
         </div>
-        <div className="pt-[31px] px-6 flex flex-col gap-[37px] bg-[url('/src/assets/bottle.svg')] bg-cover pb-20">
-          <SquareBar
-            Number={"01"}
-            Text={
-              "Setiap 90 detik, seorang anak meninggal karena penyakit terkait air yang tidak bersih."
-            }
-          />
-          <SquareBar
-            Number={"02"}
-            Text={
-              "1 dari 10 orang di dunia tidak memiliki akses ke air bersih."
-            }
-            className="self-end w-[300px] pr-2"
-          />
-          <SquareBar
-            Number={"03"}
-            Text={
-              "Lebih dari 80% air limbah yang ada diseluruh dunia dibuang ke lingkungan tanpa diolah."
-            }
-          />
+        <div className="pt-[31px] px-6 bg-[url('/src/assets/bottle.svg')] bg-cover pb-20">
+          <div className="flex flex-col items-center gap-[37px]">
+            <SquareBar
+              Number={"01"}
+              Text={
+                "Setiap 90 detik, seorang anak meninggal karena penyakit terkait air yang tidak bersih."
+              }
+            />
+            <SquareBar
+              Number={"02"}
+              Text={
+                "1 dari 10 orang di dunia tidak memiliki akses ke air bersih."
+              }
+            />
+            <SquareBar
+              Number={"03"}
+              Text={
+                "Lebih dari 80% air limbah yang ada diseluruh dunia dibuang ke lingkungan tanpa diolah."
+              }
+            />
+          </div>
         </div>
       </section>
       {/* Campanye Card */}
