@@ -1,14 +1,14 @@
 import React from "react";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import Logo from "../assets/logo.svg";
-import { Button } from "./button.module";
+import { Button } from "../component/button.module";
 
 export default function Navbar() {
   const isLargeScreen = useMediaQuery("(max-width: 768px)");
   return (
     <div>
       {isLargeScreen ? (
-        <header className="w-screen fixed flex justify-between items-center pl-3 pt-3">
+        <header className="w-screen fixed flex justify-between items-center pl-3 pt-3 z-50">
           <img src={Logo} alt="logo" className="size-8" />
           <div className="justify-start relative">
             <div className="dropdown">
@@ -34,7 +34,7 @@ export default function Navbar() {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm md:menu-md dropdown-content mt-3 z-[1] p-10  shadow bg-base-100 rounded-sm w-screen absolute right-0 md:mx-5 md:w-72"
+                className="menu menu-sm md:menu-md dropdown-content mt-3 z-[1] p-10 bg-white shadow-md rounded-sm w-screen absolute right-0 md:mx-5 md:w-72"
               >
                 <li className="md:text-base" onClick={() => scroll("about")}>
                   About
@@ -53,20 +53,22 @@ export default function Navbar() {
           </div>
         </header>
       ) : (
-        <header className="fixed p-8 flex justify-between top-0 right-0 left-0 items-center z-50">
-          <div className="flex items-center">
-            <img src={Logo} alt="logo" className="size-10" />
-            <h1 className="text-primary text-xl font-extrabold">HydroCare</h1>
+        <header className="fixed flex gap-20 top-0 right-0 left-0 items-center z-50 bg-white mt-10 mx-[8%] rounded-[30px] px-4 py-[10px] shadow-md justify-center">
+          <div className="flex items-center gap-2">
+            <img src={Logo} alt="logo" className="size-8" />
+            <h1 className="text-primary font-extrabold text-xl lg:text-lg">
+              Hydrocare
+            </h1>
           </div>
-          <ul className="flex gap-10 items-center justify-items-center xl:text-xl text-primary font-semibold text-base ">
+          <ul className="flex gap-[60px] lg:gap-[40px] text-primary text-xl lg:text-lg font-medium">
             <li>Home</li>
             <li>About Us</li>
             <li>Donasi</li>
-            <li>Contanct</li>
+            <li>Contact</li>
           </ul>
-          <div className="flex gap-3">
+          <div className="flex gap-1">
             <Button text={"Sign In"} />
-            <Button text={"Login"} />
+            <Button text={"Login"} className="bg-transparent" />
           </div>
         </header>
       )}
