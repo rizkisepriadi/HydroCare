@@ -16,21 +16,21 @@ export default function CampanyeCard() {
       <div className="bg-base-200 mt-[58.35px]">
         <img src={Temp} alt="Gambar template" className="" />
         <div className="bg-base-200 text-primary rounded-[20px] shadow-md shadow-blue-300">
-          <h1 className="text-center  text-lg font-extrabold">
+          <h1 className="text-center  text-lg font-bold">
             Kampanye yang sedang berlangsung
           </h1>
-          <div className="pl-5 pt-4">
+          <div className="flex flex-col gap-2 pl-5 pt-4 font-semibold">
             <div>
-              <p className="font-semibold">Tanggal Acara</p>
-              <p className="font-bold text-xl">17 Juni 2024</p>
+              <p className="text-sm">Tanggal Acara</p>
+              <p>17 Juni 2024</p>
             </div>
             <div>
-              <p className="font-semibold">Pelaksanaan</p>
-              <p className="font-bold text-xl">Hybrid</p>
+              <p className="text-sm">Pelaksanaan</p>
+              <p>Hybrid</p>
             </div>
             <div>
-              <p className="font-semibold">User yang Berpatipasi</p>
-              <p className="font-bold text-xl pb-6">12.890</p>
+              <p className="text-sm">User yang Berpatipasi</p>
+              <p>12.890</p>
             </div>
           </div>
           <CampanyeButton />

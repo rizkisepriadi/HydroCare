@@ -1,11 +1,11 @@
 import React from "react";
 
-export function Button({ text, link }) {
+export function Button({ text, link, className = "" }) {
   return (
     <div>
       <a
         href={link}
-        className="btn bg-neutral border-primary rounded-[100px] xl:text-xl text-base text-primary font-semibold"
+        className={`btn bg-neutral border-neutral rounded-[100px] w-[130px] lg:text-lg lg:w-[100px] xl:text-lg text-base text-primary font-semibold ${className}`}
       >
         {text}
       </a>
