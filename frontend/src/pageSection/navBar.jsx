@@ -1,15 +1,20 @@
-import React from "react";
+import { React, useState } from "react";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import Logo from "../assets/logo.svg";
 import { Button } from "../component/button.module";
+import Login from "../pages/login";
+import Register from "../pages/register";
 
 export default function Navbar() {
   const isLargeScreen = useMediaQuery("(max-width: 768px)");
+  const [login, setLogin] = useState(false);
+  const [register, setRegister] = useState(false);
+
   return (
     <div>
       {isLargeScreen ? (
-        <header className="w-screen fixed flex justify-between items-center pl-3 pt-3 z-50">
-          <img src={Logo} alt="logo" className="size-8" />
+        <header className="w-screen fixed flex justify-between items-center pt-3 z-50">
+          <img src={Logo} alt="logo" className="size-8 ml-[7%]" />
           <div className="justify-start relative">
             <div className="dropdown">
               <div
@@ -34,7 +39,7 @@ export default function Navbar() {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm md:menu-md dropdown-content mt-3 z-[1] p-10 bg-white shadow-md rounded-sm w-screen absolute right-0 md:mx-5 md:w-72"
+                className="menu menu-sm md:menu-md dropdown-content mt-3 z-[1] px-10 gap-2 items-center text-primary font-medium bg-white shadow-md rounded-sm w-screen absolute right-0  md:w-72"
               >
                 <li className="md:text-base" onClick={() => scroll("about")}>
                   About
@@ -48,6 +53,24 @@ export default function Navbar() {
                 <li className="md:text-base" onClick={() => scroll("contact")}>
                   Contact
                 </li>
+                <div className="flex gap-2">
+                  <Button
+                    text={"Sign In"}
+                    className="w-[85px] h-[20px] text-base"
+                    onClick={() => {
+                      setLogin(true);
+                      setRegister(false);
+                    }}
+                  />
+                  <Button
+                    text={"Login"}
+                    className="bg-transparent w-[85px] h-[20px] text-bas"
+                    onClick={() => {
+                      setRegister(true);
+                      setLogin(false);
+                    }}
+                  />
+                </div>
               </ul>
             </div>
           </div>
@@ -67,11 +90,27 @@ export default function Navbar() {
             <li>Contact</li>
           </ul>
           <div className="flex gap-1">
-            <Button text={"Sign In"} />
-            <Button text={"Login"} className="bg-transparent" />
+            <Button
+              text={"Sign In"}
+              onClick={() => {
+                setLogin(true);
+                setRegister(false);
+              }}
+            />
+            <Button
+              text={"Login"}
+              className="bg-transparent"
+              onClick={() => {
+                setRegister(true);
+                setLogin(false);
+              }}
+            />
           </div>
         </header>
       )}
+
+      {login && <Login isOpen={login} setIsOpen={setLogin} />}
+      {register && <Register isOpen={register} setIsOpen={setRegister} />}
     </div>
   );
 }
