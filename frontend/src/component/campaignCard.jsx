@@ -2,7 +2,7 @@ import Temp from "../assets/Temp.svg";
 import { CampanyeButton } from "./button.module";
 import { useState } from "react";
 
-export default function CampanyeCard() {
+export default function CampaignCard() {
   const texts = [
     "Bantuan dan donasi sangat pentingbagi negara kami, karena el-nino ini membuat bencara kekeringan yangberkepanjangan!!",
     "Text 2",
@@ -26,14 +26,14 @@ export default function CampanyeCard() {
             </div>
             <div>
               <p className="text-sm">Pelaksanaan</p>
-              <p>Hybrid</p>
+              <p>Offline</p>
             </div>
             <div>
               <p className="text-sm">User yang Berpatipasi</p>
               <p>12.890</p>
             </div>
           </div>
-          <CampanyeButton />
+          <CampanyeButton link={"/campaign"} />
           <div className="flex py-3 justify-center">
             {texts.map((_, index) => (
               <span

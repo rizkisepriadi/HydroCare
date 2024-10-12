@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../pageSection/navBar.jsx";
-import CampanyeCard from "../component/campanyeCard.jsx";
+import CampaignCard from "../component/campaignCard.jsx";
 import Footer from "../pageSection/footer.jsx";
 import FAQ from "../pageSection/faq.jsx";
 import Hero from "../pageSection/hero.jsx";
@@ -18,8 +18,8 @@ export default function Homepage() {
       <Invitation />
       {/* About  */}
       <About />
-      {/* Campanye Card */}
-      <CampanyeCard />
+      {/* Campaign Card */}
+      <CampaignCard />
       {/* Article */}
       <Article />
       {/* FAQ */}
