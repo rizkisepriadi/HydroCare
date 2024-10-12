@@ -23,6 +23,21 @@ const userSchema = mongoose.Schema(
     telp: {
       type: String,
     },
+    birth_date: {
+      type: Date,
+    },
+    country: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
+    campaigns: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Campaign",
+      },
+    ],
   },
   {
     timestamps: true,
@@ -78,7 +93,12 @@ userSchema.statics.login = async function (email, password) {
   return user;
 };
 
-userSchema.statics.updatePassword = async function (id, oldPassword, newPassword, retypePassword) {
+userSchema.statics.updatePassword = async function (
+  id,
+  oldPassword,
+  newPassword,
+  retypePassword
+) {
   // Validation
   if (!oldPassword || !newPassword || !retypePassword) {
     throw Error("All fields must be filled");
@@ -112,6 +132,5 @@ userSchema.statics.updatePassword = async function (id, oldPassword, newPassword
 
   return user;
 };
-
 
 export const User = mongoose.model("User", userSchema);
