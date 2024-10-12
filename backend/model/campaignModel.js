@@ -6,11 +6,6 @@ const campaignSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    user_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
     desc: {
       type: String,
       required: true,
@@ -33,7 +28,7 @@ const campaignSchema = mongoose.Schema(
     },
   },
   {
-    timestamps: true, // Mengelola createdAt dan updatedAt secara otomatis
+    timestamps: true,
   }
 );
 
