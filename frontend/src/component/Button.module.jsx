@@ -1,12 +1,12 @@
 import React from "react";
-
+import BackIcon from "../assets/back.svg";
 
 export function Button({ text, link, className = "", ...rest }) {
   return (
     <div>
       <a
         href={link}
-        className={`btn bg-neutral border-neutral rounded-[100px] w-[130px] lg:text-lg lg:w-[100px] xl:text-lg text-base text-primary font-semibold ${className}`}
+        className={`btn bg-neutral border-neutral rounded-[100px] w-[100px] lg:text-base lg:w-[100px] xl:text-lg text-base text-primary font-semibold ${className}`}
         {...rest}
       >
         {text}
@@ -33,9 +33,20 @@ export function CampaignButton({ link }) {
     <div className="flex justify-center">
       <a
         href={link}
-        className="rounded-full px-6 py-2 font-bold text-primary bg-neutral shadow-md shadow-blue-400"
+        className="btn rounded-full px-6 py-2 font-bold text-primary bg-neutral shadow-lg"
       >
-        Ayo Bergabung
+        Partisipasi
+      </a>
+    </div>
+  );
+}
+
+export function BackButton() {
+  return (
+    <div>
+      <a href="/" className="flex justify-center items-center gap-1">
+        <img src={BackIcon} className="size-6" />
+        <h1 className="font-bold text-xl">Back</h1>
       </a>
     </div>
   );

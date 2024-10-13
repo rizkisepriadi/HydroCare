@@ -3,20 +3,27 @@ import BlogImage from "../assets/blog.svg";
 
 export default function blogCard() {
   return (
-    <div className="flex rounded-[20px] items-center border border-blue-300 shadow-lg shadow-indigo-300">
-      <div className="pl-3 w-[170px] h-[140px]">
-        <img src={BlogImage} alt="" className="w-full h-full" />
-      </div>
-      <div className="text-primary px-3 py-2 w-1/2">
-        <p className="font-bold text-[10px] ">19 Jan 2022</p>
-        <a href="/article" className="text-sm font-extrabold text-wrap">
+    <a
+      href="/article"
+      className="card card-side lg:card bg-base-200 shadow-xl  lg:w-[250px] xl:w-[300px] xl:h-[400px] text-primary"
+    >
+      <figure className="px-3 py-3 w-1/2 lg:w-full">
+        <img
+          src={BlogImage}
+          alt="Article"
+          className="rounded-xl w-full h-full"
+        />
+      </figure>
+      <div className="card-compact pt-3 lg:pt-1 px-3 items-center text-left w-1/2 lg:w-full">
+        <p className="text-[10px] md:text-sm self-start">19 Jan 2022</p>
+        <p className="text-xs md:text-lg lg:text-base xl:text-lg font-extrabold text-wrap">
           Cara Untuk Melakukan Penghematan Air di Rumah - HydroCare
-        </a>
-        <p className="font-normal text-[10px] text-wrap">
+        </p>
+        <p className="pb-3 lg:pb-3 text-[10px] md:text-[15px] lg:text-sm lg:text-base text-wrap">
           Menjadi seorang programmer saat ini sudah sangat mudah untuk
-          dipelajari oleh siapapun, da....
+          dipelajari oleh...
         </p>
       </div>
-    </div>
+    </a>
   );
 }
