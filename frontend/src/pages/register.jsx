@@ -71,11 +71,11 @@ export default function Register({ isOpen, setIsOpen }) {
         <div className="flex flex-col items-center pt-3 font-semibold">
           <div className="flex gap-2">
             <p>Tidak punya akun?</p>
-            <a href="/register">Daftar Sekarang</a>
+            <a href="/register" className="font-bold">Daftar Sekarang</a>
           </div>
           <div className="flex gap-2">
             <p>Butuh bantuan?</p>
-            <a href="/">Hubungi Kami</a>
+            <a href="/" className="font-bold">Hubungi Kami</a>
           </div>
         </div>
       </div>
