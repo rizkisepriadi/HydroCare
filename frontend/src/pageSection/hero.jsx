@@ -3,7 +3,7 @@ import OverviewSection from "../component/OverviewSection";
 
 export default function hero() {
   return (
-    <section className="bg-[url('/src/assets/HOME.svg')] bg-cover bg-center h-screen">
+    <section className="bg-[url('/src/assets/home.svg')] bg-cover bg-center h-screen">
       <div className="flex flex-col items-center justify-center h-full w-full">
         {/* container */}
         <div className="lg:mb-10 2xl:mb-24 max-w-[680px]">

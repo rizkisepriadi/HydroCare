@@ -6,9 +6,9 @@ import { JoinButton } from "../component/button.module.jsx";
 
 export default function invitation() {
   return (
-    <section className="w-full h-screen">
+    <section className="w-full">
       <div className="relative flex justify-center items-center mx-auto h-full">
-        <div className="flex flex-col justify-center items-center bg-base-100 max-h-[720px] mb-40 md:mb-28 w-full">
+        <div className="flex flex-col justify-center items-center bg-base-100 max-h-[720px] my-10 md:mb-12 w-full">
           <div className="relative w-[350px] sm:w-[550px] md:w-[660px] flex justify-center items-center">
             {/* Gambar Utama */}
             <div className="w-[300px] h-[150px] sm:w-[500px] sm:h-[237.53px] md:w-[567px] md:h-[300px] rounded-2xl shadow-imgHero">
@@ -39,8 +39,8 @@ export default function invitation() {
           </div>
 
           <div className="flex justify-center items-center w-auto">
-            <div className="flex flex-col pt-4 px-2 items-center gap-5 pb-[26px] w-[380] md:w-[680px]">
-              <p className="p-section">
+            <div className="flex flex-col pt-4 items-center gap-5 w-[380] px-[10%] md:w-[680px]">
+              <p className="p-section md:text-base">
                 Bergabunglah dengan ribuan orang yang peduli untuk menghemat air
                 bersih dan memastikan akses air untuk generasi mendatang.
               </p>
@@ -48,9 +48,6 @@ export default function invitation() {
             </div>
           </div>
         </div>
-
-        {/* Feed Back */}
-        <FeedBack />
       </div>
     </section>
   );

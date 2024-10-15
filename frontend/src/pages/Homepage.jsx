@@ -1,12 +1,13 @@
 import React from "react";
 import Navbar from "../pageSection/navBar.jsx";
-import CampaignCard from "../component/campaignCard.jsx";
+import Campaign from "../pageSection/campaignSection.jsx";
 import Footer from "../pageSection/footer.jsx";
 import FAQ from "../pageSection/faq.jsx";
 import Hero from "../pageSection/hero.jsx";
 import Invitation from "../pageSection/invitation.jsx";
 import About from "../pageSection/about.jsx";
 import Article from "../pageSection/articleSection.jsx";
+import FeedBack from "../pageSection/feedback.jsx";
 
 export default function Homepage() {
   return (
@@ -16,10 +17,12 @@ export default function Homepage() {
       <Hero />
       {/* Invitation */}
       <Invitation />
+      {/* Feedback */}
+      <FeedBack />
       {/* About  */}
       <About />
       {/* Campaign Card */}
-      <CampaignCard />
+      <Campaign />
       {/* Article */}
       <Article />
       {/* FAQ */}
