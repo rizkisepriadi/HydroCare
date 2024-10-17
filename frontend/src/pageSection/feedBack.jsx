@@ -11,7 +11,7 @@ export default function FeedBack() {
             HydroCare
           </h1>
           <p className="text-sm lg:text-base xl:text-lg md:text-left font-medium text-center opacity-70">
-            HydroCare telah membantu lebih dari 10.000 penduduk
+            HydroCare telah membantu lebih dari 21.000 penduduk
           </p>
         </div>
         <Pagination />

@@ -7,7 +7,7 @@ import Hero from "../pageSection/hero.jsx";
 import Invitation from "../pageSection/invitation.jsx";
 import About from "../pageSection/about.jsx";
 import Article from "../pageSection/articleSection.jsx";
-import FeedBack from "../pageSection/feedback.jsx";
+import FeedBack from "../pageSection/feedBack.jsx";
 
 export default function Homepage() {
   return (
