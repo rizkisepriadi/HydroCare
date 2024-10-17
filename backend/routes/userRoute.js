@@ -5,8 +5,6 @@ import requireAuth from "../middleware/requireAuth.js";
 
 const router = express.Router();
 
-router.use(requireAuth);
-
 // Utility function to generate JWT token
 const createToken = (_id) => {
   return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "1d" });
@@ -35,6 +33,8 @@ router.post("/register", async (req, res) => {
     return res.status(400).json({ message: err.message });
   }
 });
+
+router.use(requireAuth);
 
 // Route for campaign participation
 router.post("/user/:id/participate", async (req, res) => {
@@ -90,16 +90,16 @@ router.get("/user/:id", async (req, res) => {
 // Route to update user account details
 router.put("/user/:id/formaccount", async (req, res) => {
   try {
-    const { name, email, username, telp } = req.body;
+    const { name, email, username, telp, birth_date, city } = req.body;
 
-    if (!name || !email || !username || !telp) {
+    if (!name || !email || !username || !telp || !birth_date || !city ) {
       return res.status(400).json({
         message:
           "Please provide all required fields: name, email, username, telp",
       });
     }
 
-    const data = { name, email, username, telp };
+    const data = { name, email, username, telp, birth_date, city };
     const user = await User.findByIdAndUpdate(req.params.id, data);
 
     return res.status(200).json(user);

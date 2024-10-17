@@ -5,6 +5,7 @@ import "dotenv/config";
 import userRoute from "./routes/userRoute.js";
 import postRoute from "./routes/postRoute.js";
 import campaignRoute from "./routes/campaignRoute.js";
+import feedbackRoute from "./routes/feedbackRoute.js"
 
 const app = express();
 const PORT = process.env.PORT;
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 app.use("/", userRoute);
 app.use("/", postRoute);
 app.use("/", campaignRoute);
+app.use("/", feedbackRoute);
 
 // Connect to MongoDB
 mongoose
