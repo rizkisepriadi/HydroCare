@@ -6,18 +6,21 @@ const articleSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    user_id: {
-      type: mongoose.Schema.Types.ObjectId, // Mongoose.Schema.Types.ObjectId
-      ref: "User",
+    summary: {
+      type: String,
       required: true,
     },
     body: {
       type: String,
       required: true,
     },
+    author: {
+      type: String,
+      required: true,
+    },
   },
   {
-    timestamps: true, // Mengelola createdAt dan updatedAt secara otomatis
+    timestamps: true,
   }
 );
 

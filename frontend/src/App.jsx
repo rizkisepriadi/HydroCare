@@ -13,6 +13,8 @@ function App() {
       <Route path="/about" element={<About />}/>
       <Route path="/campaignPage" element={<CampaignPage />}/>
       <Route path="/campaign" element={<Campaign />}/>
+      <Route path="/article/:id" element={<Article />}/>
+      <Route path="/campaign/:id" element={<Campaign />}/>
       <Route path="/dashboard" element={<Dashboard />}/>
     </Routes>
   );

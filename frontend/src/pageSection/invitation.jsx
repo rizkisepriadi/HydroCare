@@ -2,9 +2,9 @@ import FeedBack from "./feedBack.jsx";
 import Waterfall from "../assets/waterfall.svg";
 import Person from "../assets/Person.svg";
 import Lake from "../assets/Lake.svg";
-import { JoinButton } from "../component/button.module.jsx";
+import { JoinButton } from "../component/Button.module.jsx";
 
-export default function invitation() {
+export default function invitation({ isLogin }) {
   return (
     <section className="w-full">
       <div className="relative flex justify-center items-center mx-auto h-full">
@@ -39,12 +39,12 @@ export default function invitation() {
           </div>
 
           <div className="flex justify-center items-center w-auto">
-            <div className="flex flex-col pt-4 items-center gap-5 w-[380] px-[10%] md:w-[680px]">
+            <div className="flex flex-col pt-4 items-center gap-5 w-[380] px-[7%] md:w-[680px]">
               <p className="p-section md:text-base">
                 Bergabunglah dengan ribuan orang yang peduli untuk menghemat air
                 bersih dan memastikan akses air untuk generasi mendatang.
               </p>
-              <JoinButton />
+              {!isLogin && <JoinButton />}
             </div>
           </div>
         </div>

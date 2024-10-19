@@ -2,16 +2,34 @@ import React, { useState } from "react";
 import Logo from "../assets/logo.svg";
 import Input from "../component/inputBar.jsx";
 import { useSnackbar } from "notistack";
-// import { useLogin } from "../context/AuthContext.jsx";
+import { useSignup } from "../hooks/useSignup";
+import { useNavigate } from "react-router-dom";
 
 export default function Register({ isOpen, setIsOpen }) {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
+  const { signup, isLoading, error } = useSignup();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Logic login
+  const handleSubmit = async () => {
+    try {
+      await signup(name, email, password);
+      enqueueSnackbar("Register successful", {
+        variant: "success",
+        autoHideDuration: 500,
+      });
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+    } catch (err) {
+      enqueueSnackbar(err.message || "Registration failed", {
+        variant: "error",
+        autoHideDuration: 3000,
+      });
+      console.error(err);
+    }
   };
 
   const closeModal = () => {
@@ -46,21 +64,27 @@ export default function Register({ isOpen, setIsOpen }) {
         <form onSubmit={handleSubmit} className="flex flex-col">
           <label>Name</label>
           <Input
-            label="Enter Your Email"
+            type="text"
             value={name}
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter Your Email"
+            onChange={(e) => setName(e.target.value)}
+            required
           />
           <label>Email</label>
           <Input
-            label="Enter Your Email"
+            type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter Your Email"
+            required
           />
           <label>Password</label>
           <Input
-            label="Enter Your Password"
+            type="password"
+            placeholder="Enter Your Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <input
             type="submit"
@@ -71,11 +95,15 @@ export default function Register({ isOpen, setIsOpen }) {
         <div className="flex flex-col items-center pt-3 font-semibold">
           <div className="flex gap-2">
             <p>Tidak punya akun?</p>
-            <a href="/register" className="font-bold">Daftar Sekarang</a>
+            <a href="/register" className="font-bold">
+              Daftar Sekarang
+            </a>
           </div>
           <div className="flex gap-2">
             <p>Butuh bantuan?</p>
-            <a href="/" className="font-bold">Hubungi Kami</a>
+            <a href="/" className="font-bold">
+              Hubungi Kami
+            </a>
           </div>
         </div>
       </div>

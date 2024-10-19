@@ -1,14 +1,40 @@
-import { React, useState } from "react";
+import { useState } from "react";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import Logo from "../assets/logo.svg";
-import { Button } from "../component/button.module";
+import { Button } from "../component/Button.module";
 import Login from "../pages/login";
 import Register from "../pages/register";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { useEffect } from "react";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 export default function Navbar() {
   const isLargeScreen = useMediaQuery("(max-width: 768px)");
-  const [login, setLogin] = useState(false);
-  const [register, setRegister] = useState(false);
+  const [openlogin, setOpenLogin] = useState(false);
+  const [openRegister, setOpenRegister] = useState(false);
+  const [isUser, setisUser] = useState({});
+  const { user } = useAuthContext();
+  const [isLogin, setisLogin] = useState(false);
+
+  useEffect(() => {
+    if (user && user.token) {
+      const decoded = jwtDecode(user.token);
+      axios
+        .get(`http://localhost:5000/user/${decoded._id}`, {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        })
+        .then((response) => {
+          setisUser(response.data);
+          setisLogin(true);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, [user]);
 
   return (
     <div>
@@ -60,16 +86,16 @@ export default function Navbar() {
                     text={"Sign In"}
                     className="w-[85px] h-[20px] text-base"
                     onClick={() => {
-                      setLogin(true);
-                      setRegister(false);
+                      setOpenLogin(true);
+                      setOpenRegister(false);
                     }}
                   />
                   <Button
                     text={"Login"}
                     className="bg-transparent w-[85px] h-[20px] text-bas"
                     onClick={() => {
-                      setRegister(true);
-                      setLogin(false);
+                      setOpenRegister(true);
+                      setOpenLogin(false);
                     }}
                   />
                 </div>
@@ -90,28 +116,43 @@ export default function Navbar() {
             <li>Article</li>
             <li>Contact</li>
           </ul>
-          <div className="flex gap-1">
-            <Button
-              text={"Sign In"}
-              onClick={() => {
-                setLogin(true);
-                setRegister(false);
-              }}
-            />
-            <Button
-              text={"Login"}
-              className="bg-transparent"
-              onClick={() => {
-                setRegister(true);
-                setLogin(false);
-              }}
-            />
-          </div>
+          {isLogin ? (
+            <a className="flex gap-2 items-center" href="/dashboard">
+              <img
+                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                className="rounded-full w-[30px] h-[30px] lg:w-[40px] lg:h-[40px] xl:w-[45px] xl:h-[45px]"
+              />
+              <div className="flex flex-col text-primary">
+                <h1 className="text-lg font-extrabold">{isUser.name}</h1>
+                <p className="text-sm font-medium">{isUser.email}</p>
+              </div>
+            </a>
+          ) : (
+            <div className="flex gap-1">
+              <Button
+                text={"Sign In"}
+                onClick={() => {
+                  setOpenLogin(false);
+                  setOpenRegister(true);
+                }}
+              />
+              <Button
+                text={"Login"}
+                className="bg-transparent"
+                onClick={() => {
+                  setOpenRegister(false);
+                  setOpenLogin(true);
+                }}
+              />
+            </div>
+          )}
         </header>
       )}
 
-      {login && <Login isOpen={login} setIsOpen={setLogin} />}
-      {register && <Register isOpen={register} setIsOpen={setRegister} />}
+      {openlogin && <Login isOpen={openlogin} setIsOpen={setOpenLogin} />}
+      {openRegister && (
+        <Register isOpen={openRegister} setIsOpen={setOpenRegister} />
+      )}
     </div>
   );
 }

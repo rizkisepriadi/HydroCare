@@ -35,7 +35,7 @@ export function CampaignButton({ link }) {
         href={link}
         className="btn rounded-full px-6 py-2 font-bold text-primary bg-neutral shadow-lg"
       >
-        Partisipasi
+        Lihat Detail
       </a>
     </div>
   );

@@ -52,7 +52,9 @@ router.post("/user/:id/participate", async (req, res) => {
       await user.save();
     }
 
-    return res.status(200).json({ message: "Successfully participated in the campaign" });
+    return res
+      .status(200)
+      .json({ message: "Successfully participated in the campaign" });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -90,16 +92,8 @@ router.get("/user/:id", async (req, res) => {
 // Route to update user account details
 router.put("/user/:id/formaccount", async (req, res) => {
   try {
-    const { name, email, username, telp, birth_date, city } = req.body;
-
-    if (!name || !email || !username || !telp || !birth_date || !city ) {
-      return res.status(400).json({
-        message:
-          "Please provide all required fields: name, email, username, telp",
-      });
-    }
-
-    const data = { name, email, username, telp, birth_date, city };
+    const { name, telp, birth_date, city } = req.body;
+    const data = { name, telp, birth_date, city };
     const user = await User.findByIdAndUpdate(req.params.id, data);
 
     return res.status(200).json(user);
