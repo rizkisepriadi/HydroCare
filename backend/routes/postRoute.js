@@ -1,10 +1,31 @@
 import express from "express";
 import { Article } from "../model/postModel.js";
-import requireAuth from "../middleware/requireAuth.js";
+// import requireAuth from "../middleware/requireAuth.js";
 
 const router = express.Router();
 
-// Public route: Get all articles (no authentication required)
+// router.use(requireAuth);
+
+// Create new article
+router.post("/article", async (req, res) => {
+  try {
+    const { title, body, summary, author } = req.body;
+
+    if (!title || !body || !summary || !author) {
+      return res.status(400).json({ message: "Please provide title and body" });
+    }
+
+    const newArticle = { title, body, summary, author };
+    const article = await Article.create(newArticle);
+
+    return res.status(200).json(article);
+  } catch (error) {
+    console.error(error);
+    return res.status(400).json({ message: error.message });
+  }
+});
+
+// Get all articles
 router.get("/article", async (req, res) => {
   try {
     const articles = await Article.find();
@@ -15,7 +36,7 @@ router.get("/article", async (req, res) => {
   }
 });
 
-// Public route: Get article by ID (no authentication required)
+// Get article by ID
 router.get("/article/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -32,27 +53,8 @@ router.get("/article/:id", async (req, res) => {
   }
 });
 
-// Protected routes (requires authentication)
-router.post("/article", requireAuth, async (req, res) => {
-  try {
-    const { title, body, summary, author } = req.body;
-
-    if (!title || !body || !summary || !author) {
-      return res.status(400).json({ message: "Please provide title, body, summary, and author" });
-    }
-
-    const newArticle = { title, body, summary, author };
-    const article = await Article.create(newArticle);
-
-    return res.status(200).json(article);
-  } catch (error) {
-    console.error(error);
-    return res.status(400).json({ message: error.message });
-  }
-});
-
-// Update article by ID (requires authentication)
-router.put("/article/:id", requireAuth, async (req, res) => {
+// Update article by ID
+router.put("/article/:id", async (req, res) => {
   try {
     const { title, body } = req.body;
     const { id } = req.params;
@@ -78,8 +80,8 @@ router.put("/article/:id", requireAuth, async (req, res) => {
   }
 });
 
-// Delete article by ID (requires authentication)
-router.delete("/article/:id", requireAuth, async (req, res) => {
+// Delete article by ID
+router.delete("/article/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
