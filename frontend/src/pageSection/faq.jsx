@@ -1,7 +1,6 @@
-
 export default function FAQ() {
   return (
-    <div className="flex flex-col lg:flex-row text-primary lg:py-20 gap-4 py-16 px-[10%]">
+    <div className="flex flex-col lg:flex-row text-primary lg:py-20 gap-4 py-16 px-[7%]">
       <div className="flex flex-col items-center lg:items-start justify-center lg:w-1/3 xl:w-2/5">
         <h1 className="text-primary text-xl font-extrabold text-center md:text-2xl lg:text-left xl:text-3xl">
           Frequently Asked Questions

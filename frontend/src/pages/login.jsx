@@ -2,16 +2,29 @@ import React, { useState } from "react";
 import Logo from "../assets/logo.svg";
 import Input from "../component/inputBar.jsx";
 import { useSnackbar } from "notistack";
-// import { useLogin } from "../context/AuthContext.jsx";
+import { useLogin } from "../hooks/useLogin";
 
 export default function Login({ isOpen, setIsOpen }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { enqueueSnackbar } = useSnackbar();
+  const { login, isLoading } = useLogin();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Logic login
+    e.preventDefault(); // Prevents the form from reloading the page
+    try {
+      await login(email, password);
+      enqueueSnackbar("Login successful", {
+        variant: "success",
+        autoHideDuration: 500,
+      });
+      window.location.reload() 
+    } catch (err) {
+      enqueueSnackbar(err.message || "Login failed", {
+        variant: "error",
+        autoHideDuration: 3000,
+      });
+    }
   };
 
   const closeModal = () => {
@@ -46,15 +59,19 @@ export default function Login({ isOpen, setIsOpen }) {
         <form onSubmit={handleSubmit} className="flex flex-col">
           <label>Email</label>
           <Input
-            label="Enter Your Email"
+            type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter Your Email"
+            required
           />
           <label>Password</label>
           <Input
-            label="Enter Your Password"
+            type="password"
+            placeholder="Enter Your Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <div className="flex text-sm justify-between items-center mb-3">
             <div className="flex gap-1 items-center">
@@ -65,20 +82,26 @@ export default function Login({ isOpen, setIsOpen }) {
               Lupa password?
             </a>
           </div>
-          <input
+          <button
             type="submit"
-            value="Masuk"
+            disabled={isLoading}
             className="btn btn-primary text-white"
-          />
+          >
+            Masuk
+          </button>
         </form>
         <div className="flex flex-col items-center pt-3 font-semibold">
           <div className="flex gap-2">
             <p>Tidak punya akun?</p>
-            <a href="/register" className="font-bold">Daftar Sekarang</a>
+            <a href="/register" className="font-bold">
+              Daftar Sekarang
+            </a>
           </div>
           <div className="flex gap-2">
             <p>Butuh bantuan?</p>
-            <a href="/" className="font-bold">Hubungi Kami</a>
+            <a href="/" className="font-bold">
+              Hubungi Kami
+            </a>
           </div>
         </div>
       </div>

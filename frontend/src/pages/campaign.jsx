@@ -1,10 +1,113 @@
 import React from "react";
 import CampaignImage from "../assets/Temp.svg";
-import ImagePhoto from "../assets/home.svg";
 import Navbar from "../pageSection/navBar";
 import Footer from "../pageSection/footer";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import { useParams } from "react-router-dom";
+import { enqueueSnackbar } from "notistack";
 
 export default function Campaign() {
+  const [isUser, setisUser] = useState({});
+  const { id } = useParams();
+  const [campaign, setCampaign] = useState({});
+  const { user } = useAuthContext();
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [isJoining, setIsJoining] = useState(false);
+
+  useEffect(() => {
+    if (user && user.token) {
+      const decoded = jwtDecode(user.token);
+      axios
+        .get(`http://localhost:5000/user/${decoded._id}`, {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        })
+        .then((response) => {
+          setisUser(response.data);
+
+          // Mengecek apakah pengguna sudah bergabung di kampanye
+          const isUserJoined = response.data.campaigns.includes(id);
+          setIsJoining(isUserJoined); // Set state isJoining sesuai dengan hasil cek
+
+          // Ambil data kampanye
+          return axios.get(`http://localhost:5000/campaign/${id}`, {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          });
+        })
+        .then((response) => {
+          setCampaign(response.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, [user, id]); // Pastikan untuk menambahkan id ke dalam array dependencies
+
+  const joinCampaign = async () => {
+    if (user && user.token) {
+      setShowConfirm(false); // Hide confirmation modal
+      setIsJoining(false); // Set joining state
+
+      try {
+        const decoded = jwtDecode(user.token);
+        await axios.post(
+          `http://localhost:5000/user/${id}/participate`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
+        enqueueSnackbar("Thank You for participating", {
+          variant: "success",
+          autoHideDuration: 1000,
+        });
+      } catch (error) {
+        enqueueSnackbar("Please try again", {
+          variant: "error",
+          autoHideDuration: 1000,
+        });
+      } finally {
+        setIsJoining(true);
+      }
+    } else {
+      enqueueSnackbar("You need to log in to participate", {
+        variant: "error",
+        autoHideDuration: 1000,
+      });
+    }
+  };
+
+  function convertDate(date) {
+    const dateObj = new Date(date);
+    const day = String(dateObj.getDate()).padStart(2, "0");
+    const months = [
+      "Januari",
+      "Februari",
+      "Maret",
+      "April",
+      "Mei",
+      "Juni",
+      "Juli",
+      "Agustus",
+      "September",
+      "Oktober",
+      "November",
+      "Desember",
+    ];
+    const month = months[dateObj.getMonth()];
+    const year = dateObj.getFullYear();
+
+    return `${day} ${month} ${year}`;
+  }
+
   return (
     <div>
       <Navbar />
@@ -15,10 +118,10 @@ export default function Campaign() {
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="flex flex-col items-center px-[5%] py-5 text-primary">
-        <div className="flex justify-center items-center gap-3 mb-5 ">
+      <div className="flex flex-col items-center lg:items-start px-[5%] py-5 text-primary">
+        <div className="flex justify-center items-center gap-3 mb-5">
           <div className="avatar">
-            <div className="w-[120px] lg:w-52 xl:w-64 rounded">
+            <div className="w-[120px] lg:w-36 xl:w-44 rounded">
               <img
                 src={CampaignImage}
                 alt="Border"
@@ -27,7 +130,7 @@ export default function Campaign() {
             </div>
           </div>
           <h1 className="text-primary font-bold text-lg md:text-xl lg:text-3xl xl:text-4xl">
-            Cara Untuk Melakukan Penghematan Air di Rumah - HydroCare
+            {campaign.title}
           </h1>
         </div>
 
@@ -37,23 +140,36 @@ export default function Campaign() {
               <h1 className="font-semibold md:text-center lg:text-start lg:text-lg xl:text-xl">
                 Ayo Berpartisipasi
               </h1>
-              <a className="btn btn-block rounded-xl border border-primary font-bold text-primary">
-                Bergabung
-              </a>
+              {isJoining ? (
+                <div className="w-full rounded-xl border border-primary p-3 font-bold text-primary bg-white">
+                  <h1 className="text-center">Sudah Bergabung</h1>
+                </div>
+              ) : (
+                <button
+                  onClick={() => setShowConfirm(true)} // Show confirmation modal
+                  className="btn btn-block rounded-xl border border-primary font-bold text-primary"
+                >
+                  Bergabung
+                </button>
+              )}
             </div>
 
-            <div className="flex  lg:flex-col items-center justify-around lg:items-start gap-2 lg:gap-5 ">
+            <div className="flex flex-col md:flex-row md:justify-between lg:flex-col md:items-center justify-around lg:items-start gap-2 lg:gap-5 ">
               <div className="flex flex-col gap-1">
                 <h1 className="font-semibold lg:text-lg xl:text-xl">Jadwal</h1>
                 <table className="xl:text-lg">
                   <tbody>
                     <tr>
                       <td>Mulai</td>
-                      <td>: 17 Juni 2024</td>
+                      <td className="font-bold">
+                        : {convertDate(campaign.start_date)}
+                      </td>
                     </tr>
                     <tr>
                       <td>Selesai</td>
-                      <td>: 17 Juni 2024</td>
+                      <td className="font-bold">
+                        : {convertDate(campaign.end_date)}
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -75,7 +191,7 @@ export default function Campaign() {
                       fill="#0063A7"
                     />
                   </svg>
-                  <p>Indonesia</p>
+                  <p className="font-bold">{campaign.location}</p>
                 </div>
                 <div className="flex gap-2 items-center xl:text-lg">
                   <svg
@@ -92,23 +208,45 @@ export default function Campaign() {
                       fill="#0063A7"
                     />
                   </svg>
-                  <p>Offline</p>
+                  <p className="font-bold">{campaign.event_type}</p>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="lg:w-3/4">
-            <h1 className="font-semibold py-2 lg:text-lg xl:text-xl">Deskripsi</h1>
-            <p className="whitespace-pre-line lg:text-justify text-sm xl:text-lg md:text-base">{`Kolaborasi pemerintah dan swasta berperan penting dalam peningkatan akses masyarakat terhadap air bersih dan sanitasi. Saat ini, akses terhadap air minum yang layak telah mencapai 91,72 persen berdasarkan data Badan Pusat Statistik (BPS) tahun 2023.
-            
-            Sebelumnya, Pemerintah Indonesia telah menetapkan Rencana Jangka Panjang Menengah Nasional (RPJMN) dengan target 100 persen akses air minum layak pada tahun 2020-2024. Hal ini tertuang dalam Lampiran II Perpres Nomor 18 Tahun 2020.
-            
-            Staf Ahli V Kementerian PUPR mengatakan, partisipasi yang terus meningkat dari swasta dapat membantu pemerintah dalam memperluas akses air minum yang layak sekaligus meningkatkan kesehatan dan kesejahteraan masyarakat.`}</p>
+            <h1 className="font-semibold py-2 lg:text-lg xl:text-xl">
+              Deskripsi
+            </h1>
+            <p className="whitespace-pre-line lg:text-justify text-sm xl:text-lg md:text-base">{`${campaign.desc}`}</p>
           </div>
         </div>
       </div>
       <Footer />
+
+      {showConfirm && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-lg p-5">
+            <h2 className="text-lg font-semibold">Konfirmasi Bergabung</h2>
+            <p>Apakah Anda yakin ingin bergabung dengan kampanye ini?</p>
+            <div className="flex justify-end gap-3 mt-4">
+              <button
+                onClick={() => setShowConfirm(false)}
+                className="btn border border-gray-300 text-gray-700 hover:bg-gray-200 rounded"
+              >
+                Batal
+              </button>
+              <button
+                onClick={joinCampaign}
+                className="btn bg-primary text-white rounded"
+                disabled={isJoining}
+              >
+                {isJoining ? "Bergabung..." : "Ya, Bergabung!"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

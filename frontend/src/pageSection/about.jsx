@@ -7,7 +7,7 @@ export default function about() {
   const isLargeScreen = useMediaQuery("(max-width: 768px)");
 
   return (
-    <section className="bg-white bg-gradient-to-b from-white via-white to-base-100 px-[10%]">
+    <section className="bg-white bg-gradient-to-b from-white via-white to-base-100 px-[7%]">
       <h1 className="text-primary text-xl font-extrabold text-center lg:pt-10 xl:pt-20 lg:mb-5 py-10 md:text-2xl">
         Selamatkan Air, Selamatkan
         <span className="lg:hidden">
@@ -16,7 +16,7 @@ export default function about() {
         Masa Depan Kita
       </h1>
       <div className="bg-[url('/src/assets/bottle.svg')] bg-opacity-90 lg:bg-none flex flex-col lg:flex-row bg-cover bg-center relative lg:justify-between lg:gap-40">
-      {isLargeScreen ? (
+        {isLargeScreen ? (
           <div className="border border-[#0063A7] border-opacity-10 p-2 rounded-[20px] shadow-[0px_4px_4px_0px_rgba(15,63,233,0.25),0px_-3px_4px_0px_rgba(15,63,233,0.25)]">
             <div className="text-primary text-justify text-sm md:text-base font-semibold justify-center">
               <p className="pb-5  ">
@@ -53,7 +53,11 @@ export default function about() {
                 </p>
               </div>
             </div>
-            <img src={BottleImage} alt="" className="absolute z-0 bg-cover w-full h-full " />
+            <img
+              src={BottleImage}
+              alt=""
+              className="absolute z-0 bg-cover w-full h-full "
+            />
           </div>
         )}
 

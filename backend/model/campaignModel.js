@@ -26,6 +26,9 @@ const campaignSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    finished: {
+      type: Boolean
+    }
   },
   {
     timestamps: true,

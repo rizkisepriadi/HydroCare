@@ -6,7 +6,7 @@ import Line from "../assets/line.svg";
 
 export default function Footer() {
   return (
-    <div className="flex flex-col lg:flex-row bg-base-200 lg:justify-between items-center text-primary pb-6 xl:pb-10 px-[10%]">
+    <div className="flex flex-col lg:flex-row bg-base-200 lg:justify-between items-center text-primary pb-6 xl:pb-10 px-[7%]">
       <div className="flex flex-col items-center lg:items-start lg:w-[250px] xl:w-[350px]">
         <a href="/" className="flex items-center gap-2 pt-6 ">
           <img src={Logo} alt="logo" className="size-8" />
@@ -19,7 +19,7 @@ export default function Footer() {
           Bersama Menciptakan Dunia dengan Air Bersih untuk Semua.
         </h1>
       </div>
-      
+
       <div className="flex pt-8 gap-24 lg:gap-16 xl:gap-20">
         <div>
           <h1 className="text-xl font-bold xl:text-2xl">Dukungan</h1>
@@ -39,7 +39,9 @@ export default function Footer() {
         </div>
       </div>
       <div className="flex flex-col items-center justify-center">
-        <h1 className="text-2xl pt-8 xl:pt-9 font-extrabold xl:text-3xl lg:pt-10">Sosial Media Kami</h1>
+        <h1 className="text-2xl pt-8 xl:pt-9 font-extrabold xl:text-3xl lg:pt-10">
+          Sosial Media Kami
+        </h1>
         <p className="font-medium text-xs xl:text-base">
           &copy; 2024 Hydrocare All Rights Reserved
         </p>

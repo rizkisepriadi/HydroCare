@@ -1,16 +1,23 @@
 import express from "express";
 import { Campaign } from "../model/campaignModel.js";
-import requireAuth from "../middleware/requireAuth.js";
+// import requireAuth from "../middleware/requireAuth.js";
 
 const router = express.Router();
 
-router.use(requireAuth);
+// router.use(requireAuth);
 
 // Create new campaign
 router.post("/campaign", async (req, res) => {
   try {
-    const { title, desc, location, start_date, end_date, event_type } =
-      req.body;
+    const {
+      title,
+      desc,
+      location,
+      start_date,
+      end_date,
+      event_type,
+      finished,
+    } = req.body;
 
     if (
       !title ||
@@ -33,6 +40,7 @@ router.post("/campaign", async (req, res) => {
       start_date,
       end_date,
       event_type,
+      finished,
     };
     const campaign = await Campaign.create(newCampaign);
 
@@ -74,22 +82,16 @@ router.get("/campaign/:id", async (req, res) => {
 // Update campaign by ID
 router.put("/campaign/:id", async (req, res) => {
   try {
-    const { title, desc, location, start_date, end_date, event_type } =
-      req.body;
+    const {
+      title,
+      desc,
+      location,
+      start_date,
+      end_date,
+      event_type,
+      finished,
+    } = req.body;
     const { id } = req.params;
-
-    if (
-      !title ||
-      !desc ||
-      !location ||
-      !start_date ||
-      !end_date ||
-      !event_type
-    ) {
-      return res
-        .status(400)
-        .json({ message: "Please provide all required fields" });
-    }
 
     const campaign = await Campaign.findById(id);
     if (!campaign) {
