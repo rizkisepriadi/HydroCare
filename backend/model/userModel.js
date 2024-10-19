@@ -8,6 +8,10 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    username: {
+      type: String,
+      unique: true      
+    },
     email: {
       type: String,
       required: true,
@@ -25,9 +29,6 @@ const userSchema = mongoose.Schema(
     },
     birth_date: {
       type: Date,
-    },
-    country: {
-      type: String,
     },
     city: {
       type: String,
