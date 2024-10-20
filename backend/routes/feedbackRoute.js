@@ -4,19 +4,17 @@ import requireAuth from "../middleware/requireAuth.js";
 
 const router = express.Router();
 
-router.use(requireAuth);
-
-// Create new feedback
-router.post("/feedback", async (req, res) => {
+// Create new feedback - Protected route
+router.post("/feedback", requireAuth, async (req, res) => {
   try {
-    const { name, desc, position } = req.body;
+    const { name, desc, position, image } = req.body;
 
     if (!name || !desc) {
       return res.status(400).json({ message: "Please provide name and desc" });
     }
 
-    const newfeedback = { name, desc, position };
-    const feedback = await Feedback.create(newfeedback);
+    const newFeedback = { name, desc, positionm, image };
+    const feedback = await Feedback.create(newFeedback);
 
     return res.status(200).json(feedback);
   } catch (error) {
@@ -25,7 +23,7 @@ router.post("/feedback", async (req, res) => {
   }
 });
 
-// Get all feedbacks
+// Get all feedbacks - Public route
 router.get("/feedback", async (req, res) => {
   try {
     const feedbacks = await Feedback.find();
@@ -36,14 +34,14 @@ router.get("/feedback", async (req, res) => {
   }
 });
 
-// Get feedback by ID
+// Get feedback by ID - Public route
 router.get("/feedback/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const feedback = await Feedback.findById(id);
 
     if (!feedback) {
-      return res.status(404).json({ message: "feedback not found" });
+      return res.status(404).json({ message: "Feedback not found" });
     }
 
     return res.status(200).json(feedback);
@@ -53,10 +51,10 @@ router.get("/feedback/:id", async (req, res) => {
   }
 });
 
-// Update feedback by ID
-router.put("/feedback/:id", async (req, res) => {
+// Update feedback by ID - Protected route
+router.put("/feedback/:id", requireAuth, async (req, res) => {
   try {
-    const { name, desc, position } = req.body;
+    const { name, desc, position, image } = req.body;
     const { id } = req.params;
 
     if (!name || !desc) {
@@ -65,10 +63,19 @@ router.put("/feedback/:id", async (req, res) => {
 
     const feedback = await Feedback.findById(id);
     if (!feedback) {
-      return res.status(404).json({ message: "feedback not found" });
+      return res.status(404).json({ message: "Feedback not found" });
     }
 
-    await Feedback.findByIdAndUpdate(id, { name, desc, position }, { new: true });
+    // Check if the user is authorized to update this feedback
+    if (feedback.user_id.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ message: "Unauthorized access" });
+    }
+
+    await Feedback.findByIdAndUpdate(
+      id,
+      { name, desc, position, image },
+      { new: true }
+    );
     return res.status(200).json({ message: "Updated successfully" });
   } catch (error) {
     console.error(error);
@@ -76,16 +83,17 @@ router.put("/feedback/:id", async (req, res) => {
   }
 });
 
-// Delete feedback by ID
-router.delete("/feedback/:id", async (req, res) => {
+// Delete feedback by ID - Protected route
+router.delete("/feedback/:id", requireAuth, async (req, res) => {
   try {
     const { id } = req.params;
 
     const feedback = await Feedback.findByIdAndDelete(id);
     if (!feedback) {
-      return res.status(404).json({ message: "feedback not found" });
+      return res.status(404).json({ message: "Feedback not found" });
     }
 
+    // Check if the user is authorized to delete this feedback
     if (feedback.user_id.toString() !== req.user._id.toString()) {
       return res.status(403).json({ message: "Unauthorized access" });
     }

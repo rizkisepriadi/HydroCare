@@ -1,13 +1,11 @@
 import express from "express";
 import { Campaign } from "../model/campaignModel.js";
-// import requireAuth from "../middleware/requireAuth.js";
+import requireAuth from "../middleware/requireAuth.js"; // Import requireAuth middleware
 
 const router = express.Router();
 
-// router.use(requireAuth);
-
-// Create new campaign
-router.post("/campaign", async (req, res) => {
+// Create new campaign - Protected route
+router.post("/campaign", requireAuth, async (req, res) => {
   try {
     const {
       title,
@@ -17,6 +15,7 @@ router.post("/campaign", async (req, res) => {
       end_date,
       event_type,
       finished,
+      image
     } = req.body;
 
     if (
@@ -25,7 +24,7 @@ router.post("/campaign", async (req, res) => {
       !location ||
       !start_date ||
       !end_date ||
-      !event_type
+      !event_type 
     ) {
       return res.status(400).json({
         message:
@@ -41,6 +40,8 @@ router.post("/campaign", async (req, res) => {
       end_date,
       event_type,
       finished,
+      user_id: req.user._id,
+      image
     };
     const campaign = await Campaign.create(newCampaign);
 
@@ -51,7 +52,7 @@ router.post("/campaign", async (req, res) => {
   }
 });
 
-// Get all campaigns
+// Get all campaigns - Public route
 router.get("/campaign", async (req, res) => {
   try {
     const campaigns = await Campaign.find();
@@ -62,7 +63,7 @@ router.get("/campaign", async (req, res) => {
   }
 });
 
-// Get campaign by ID
+// Get campaign by ID - Public route
 router.get("/campaign/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -79,18 +80,9 @@ router.get("/campaign/:id", async (req, res) => {
   }
 });
 
-// Update campaign by ID
-router.put("/campaign/:id", async (req, res) => {
+// Update campaign by ID - Protected route
+router.put("/campaign/:id", requireAuth, async (req, res) => {
   try {
-    const {
-      title,
-      desc,
-      location,
-      start_date,
-      end_date,
-      event_type,
-      finished,
-    } = req.body;
     const { id } = req.params;
 
     const campaign = await Campaign.findById(id);
@@ -106,8 +98,8 @@ router.put("/campaign/:id", async (req, res) => {
   }
 });
 
-// Delete campaign by ID
-router.delete("/campaign/:id", async (req, res) => {
+// Delete campaign by ID - Protected route
+router.delete("/campaign/:id", requireAuth, async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -116,6 +108,7 @@ router.delete("/campaign/:id", async (req, res) => {
       return res.status(404).json({ message: "Campaign not found" });
     }
 
+    // Check if the user is authorized to delete this campaign
     if (campaign.user_id.toString() !== req.user._id.toString()) {
       return res.status(403).json({ message: "Unauthorized access" });
     }
