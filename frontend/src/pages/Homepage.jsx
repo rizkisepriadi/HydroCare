@@ -5,7 +5,7 @@ import Footer from "../pageSection/footer.jsx";
 import FAQ from "../pageSection/faq.jsx";
 import Hero from "../pageSection/hero.jsx";
 import Invitation from "../pageSection/invitation.jsx";
-import About from "../pageSection/about.jsx";
+import SectionThird from "../pageSection/sectionThird.jsx";
 import Article from "../pageSection/articleSection.jsx";
 import FeedBack from "../pageSection/feedBack.jsx";
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -47,7 +47,7 @@ export default function Homepage() {
       {/* Feedback */}
       <FeedBack />
       {/* About  */}
-      <About />
+      <SectionThird />
       {/* Campaign Card */}
       <Campaign />
       {/* Article */}

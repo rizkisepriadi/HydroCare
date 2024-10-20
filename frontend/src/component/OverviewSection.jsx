@@ -26,7 +26,7 @@ export default function OverviewSection() {
 
   // Slide content for both large and small screens
   return (
-    <div className="relative opacity-70 w-full">
+    <div className="relative w-full opacity-70 px-[7%]">
       {isLargeScreen ? (
         <div className="absolute bottom-0 left-0 mb-20 px-14 bg-base-200 h-[120px] w-full shadow-lg">
           <div className="flex justify-center items-center w-full mx-auto h-full max-h-[900px]">
@@ -37,15 +37,15 @@ export default function OverviewSection() {
                   activeSlide === "left" ? transitionClass : "translate-x-full"
                 }`}
               >
-                <div className="flex flex-col justify-center items-center">
+                <div className="flex flex-col items-center justify-center">
                   <h1 className="text-2xl font-bold leading-tight">21.000+</h1>
                   <p className="text-base font-medium">Orang terbantu</p>
                 </div>
-                <div className="flex flex-col justify-center items-center">
+                <div className="flex flex-col items-center justify-center">
                   <h1 className="text-2xl font-bold leading-tight">10.000+</h1>
                   <p className="text-base font-medium">Liter Air Bersih</p>
                 </div>
-                <div className="flex flex-col justify-center items-center">
+                <div className="flex flex-col items-center justify-center">
                   <h1 className="text-2xl font-bold leading-tight">150+</h1>
                   <p className="text-base font-medium">Anggota Aktif</p>
                 </div>
@@ -59,12 +59,12 @@ export default function OverviewSection() {
                     : "-translate-x-full"
                 }`}
               >
-                <div className="flex flex-col justify-center items-center">
-                  <p className="text-Base font-medium text-center">
-                    Negara-Negara dengan Kontribusi User Terbesar untuk
+                <div className="flex flex-col items-center justify-center">
+                  <p className="font-medium text-center text-Base">
+                    Kota-kota dengan Kontribusi User Terbesar untuk
                     Kesuksesan Program Ini
                   </p>
-                  <ul className="grid grid-flow-col grid-rows-2 sm:flex sm:justify-center sm:items-center text-base font-bold list-disc justify-center items-center">
+                  <ul className="grid items-center justify-center grid-flow-col grid-rows-2 text-base font-bold list-disc sm:flex sm:justify-center sm:items-center">
                     <li className="mx-4 ">Indonesia</li>
                     <li className="mx-4">Singapura</li>
                     <li className="mx-4">Malaysia</li>
@@ -76,46 +76,45 @@ export default function OverviewSection() {
           </div>
         </div>
       ) : (
-        <div className="absolute bottom-0 mb-12 left-0 h-[160px] w-full bg-base-200 p-5 xl:p-3 shadow-lg">
+        <div className="absolute bottom-0 mb-12 left-0 h-[160px] w-full bg-base-200 p-5 shadow-lg px-[7%]" >
           <div className="flex justify-center gap-20 items-center w-full mx-auto h-full max-h-[900px]">
             {/* Left section (statistik) */}
             <div className="flex justify-center gap-10 text-primary">
               <div className="flex flex-col">
-                <h1 className="text-2xl 2xl:text-title-3 font-bold leading-tight text-center 2xl:text-start">
+                <h1 className="text-2xl font-bold leading-tight text-center">
                   21.000+
                 </h1>
-                <p className="text-base 2xl:text-Base-3 font-medium text-center 2xl:text-start">
+                <p className="text-base font-medium text-center">
                   Orang terbantu
                 </p>
               </div>
               <div className="flex flex-col">
-                <h1 className="text-2xl 2xl:text-title-3 font-bold leading-tight text-center 2xl:text-start">
+                <h1 className="text-2xl font-bold leading-tight text-center">
                   10.000+
                 </h1>
-                <p className="text-base 2xl:text-Base-3 font-medium text-center 2xl:text-start">
+                <p className="text-base font-medium text-center">
                   Liter Air Bersih
                 </p>
               </div>
               <div className="flex flex-col">
-                <h1 className="text-2xl 2xl:text-title-3 font-bold leading-tight text-center 2xl:text-start">
+                <h1 className="text-2xl font-bold leading-tight text-center">
                   150+
                 </h1>
-                <p className="text-base 2xl:text-Base-3 font-medium text-center 2xl:text-start">
+                <p className="text-base font-medium text-center">
                   Anggota Aktif
                 </p>
               </div>
             </div>
             {/* Right section (negara) */}
             <div className="flex flex-col justify-between text-primary">
-              <p className="text-lg 2xl:text-Base-2 font-medium break-all">
-                Negara-negara dengan Kontribusi User Terbesar untuk Kesuksesan
-                Program Ini
+              <p className="text-lg font-medium break-all">
+                Kota-kota dengan Kontribusi User Terbesar untuk Kesuksesan Program Ini
               </p>
-              <ul className="flex 2xl:gap-8 justify-stretch text-base 2xl:text-Base-3 font-bold list-disc pl-5 flex-wrap">
-                <li className="pr-8">Indonesia</li>
-                <li className="pr-8">Singapura</li>
-                <li className="pr-8">Malaysia</li>
-                <li className="pr-8">Brunei</li>
+              <ul className="flex flex-wrap pl-5 text-base font-bold list-disc justify-stretch">
+                <li className="pr-8">Palembang</li>
+                <li className="pr-8">Jambi</li>
+                <li className="pr-8">Jakarta</li>
+                <li className="pr-8">Bogor</li>
               </ul>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import CampaignImage from "../assets/Temp.svg";
+import CampaignImage from "../assets/Sosialisasi.svg";
 import CardSlide from "../component/cardSlide";
 import CampaignInfo from "../component/campaignInfo.jsx";
 import Footer from "../pageSection/footer.jsx";
@@ -14,7 +14,7 @@ export default function campaignPage() {
             <img
               src={CampaignImage}
               alt="Campaign"
-              className="object-cover w-full h-full rounded"
+              className="object-cover w-full h-full"
             />
           </div>
 

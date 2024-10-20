@@ -39,20 +39,20 @@ export default function Navbar() {
   return (
     <div>
       {isLargeScreen ? (
-        <header className="w-screen fixed flex justify-between items-center pt-3 z-50">
+        <header className="fixed z-50 flex items-center justify-between w-screen pt-3">
           <a href="/">
-            <img src={Logo} alt="logo" className="size-8 ml-[7%]" />
+            <img src={Logo} alt="logo" className="size-8 ml-[7%] mr-4" />
           </a>
-          <div className="justify-start relative">
+          <div className="relative justify-start">
             <div className="dropdown">
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost btn-circle"
+                className="mr-4 btn btn-ghost btn-circle"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
+                  className="w-5 h-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -67,19 +67,19 @@ export default function Navbar() {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm md:menu-md dropdown-content mt-3 z-[1] px-10 gap-2 items-center text-primary font-medium bg-white shadow-md rounded-sm w-screen absolute right-0  md:w-72"
+                className="menu menu-sm md:menu-md dropdown-content mt-3 z-[1] px-10 gap-3 items-center text-primary font-medium bg-white shadow-md rounded-sm w-screen absolute right-0  md:w-72"
               >
-                <li className="md:text-base" onClick={() => scroll("about")}>
-                  <a href="/campaign">Kampanye</a>
+                <li className="cursor-pointer">
+                  <a href="/">Home</a>
                 </li>
-                <li className="md:text-base" onClick={() => scroll("tech")}>
-                  Tech
+                <li className="cursor-pointer">
+                  <a href="/campaignPage">Kampanye</a>
                 </li>
-                <li className="md:text-base" onClick={() => scroll("work")}>
-                  Work
+                <li className="cursor-pointer">
+                  <a href="">Artikel</a>
                 </li>
-                <li className="md:text-base" onClick={() => scroll("contact")}>
-                  Contact
+                <li className="cursor-pointe">
+                  <a href="/articlePage">Kontak</a>
                 </li>
                 <div className="flex gap-2">
                   <Button
@@ -92,7 +92,7 @@ export default function Navbar() {
                   />
                   <Button
                     text={"Login"}
-                    className="bg-transparent w-[85px] h-[20px] text-bas"
+                    className="bg-transparent w-[85px] h-[20px] text-base"
                     onClick={() => {
                       setOpenRegister(true);
                       setOpenLogin(false);
@@ -107,18 +107,18 @@ export default function Navbar() {
         <header className="fixed flex  top-0 right-0 left-0 items-center z-50 bg-white mt-10 mx-[8%] rounded-[30px] px-4 lg:py-1 xl:py-[5px] shadow-md justify-around">
           <a href="/" className="flex items-center gap-2">
             <img src={Logo} alt="logo" className="size-8" />
-            <h1 className="text-primary font-extrabold xl:text-xl lg:text-base">
+            <h1 className="font-extrabold text-primary xl:text-xl lg:text-base">
               Hydrocare
             </h1>
           </a>
-          <ul className="flex lg:gap-[30px] xl:gap-12 xl:text-xl text-primary lg:text-base text-xl font-medium items-center">
-            <li><a href="/">Home</a></li>
-            <li>Campaign</li>
-            <li>Article</li>
-            <li>Contact</li>
+          <ul className="flex lg:gap-[30px] xl:gap-16 xl:text-xl text-primary lg:text-base font-medium items-center gap-3">
+            <li className="cursor-pointer"><a href="/">Home</a></li>
+            <li className="cursor-pointer"><a href="/campaignPage">Kampanye</a></li>
+            <li className="cursor-pointer"><a href="/articlePage">Artikel</a></li>
+            <li className="cursor-pointer"><a href="">kontak</a></li>
           </ul>
           {isLogin ? (
-            <a className="flex gap-2 items-center" href="/dashboard">
+            <a className="flex items-center gap-2" href="/dashboard">
               <img
                 src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                 className="rounded-full w-[30px] h-[30px] lg:w-[40px] lg:h-[40px] xl:w-[45px] xl:h-[45px]"
@@ -129,7 +129,7 @@ export default function Navbar() {
               </div>
             </a>
           ) : (
-            <div className="flex gap-1">
+            <div className="flex gap-1 md:py-1">
               <Button
                 text={"Sign In"}
                 onClick={() => {
