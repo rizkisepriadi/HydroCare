@@ -1,11 +1,31 @@
 import React from "react";
-import Navbar from "../pageSection/navbar";
+import Navbar from "../pageSection/navBar";
 import Footer from "../pageSection/footer.jsx";
 import Linkedln from "../assets/linkedin.svg";
 import Facebook from "../assets/facebook.svg";
 import InstagramContact from "../assets/instagramContact.svg";
 
 export default function contact() {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const jenisPesan = e.target[0].value;
+    const namaDepan = e.target[1].value;
+    const namaBelakang = e.target[2].value;
+    const email = e.target[3].value;
+    const nomorTelepon = e.target[4].value;
+    const perusahaan = e.target[5].value || "-";
+    const pesan = e.target[6].value;
+
+    const pesanWhatsApp = `Halo! Saya ingin menghubungi Anda mengenai:\n\nJenis Pesan: ${jenisPesan}\n\nSaya ${namaDepan} ${namaBelakang}\nEmail: ${email}\nNomor Telepon: ${nomorTelepon}\nPerusahaan: ${perusahaan}\n\nPesan: ${pesan}`;
+
+    const waUrl = `https://api.whatsapp.com/send?phone=+6281273465572&text=${encodeURIComponent(
+      pesanWhatsApp
+    )}`;
+
+    window.open(waUrl, "_blank");
+  };
+
   return (
     <div>
       <Navbar />
@@ -113,7 +133,8 @@ export default function contact() {
                 Kirimkan Pesan Anda Sekarang dan Terhubung dengan Kami!
               </h2>
 
-              <form className="mt-4 space-y-4">
+              {/* Form */}
+              <form onSubmit={handleSubmit} className="mt-4 space-y-4">
                 <div>
                   <label>Pilih Jenis Pesan</label>
                   <select
@@ -187,8 +208,8 @@ export default function contact() {
                 <div className="flex items-center space-x-2">
                   <input type="checkbox" className="w-4 h-4" />
                   <span>
-                    I accept the website{" "}
-                    <a href="/privacyPolicy" className="font-semibold">
+                    I accept the website
+                    <a href="/privacyPolicy" className="pl-1 font-bold">
                       privacy policy
                     </a>
                     .
