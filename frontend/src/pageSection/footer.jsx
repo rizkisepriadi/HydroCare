@@ -10,42 +10,42 @@ export default function Footer() {
       <div className="flex flex-col items-center lg:items-start lg:w-[250px] xl:w-[350px]">
         <a href="/" className="flex items-center gap-2 pt-6 ">
           <img src={Logo} alt="logo" className="size-8" />
-          <h1 className="text-primary font-extrabold lg:text-xl xl:text-2xl">
+          <h1 className="font-extrabold text-primary lg:text-xl xl:text-2xl">
             Hydrocare
           </h1>
         </a>
 
-        <h1 className="text-lg font-medium text-center lg:text-left lg:text-base lg:pt-2 xl:text-lg pt-4">
+        <h1 className="pt-4 text-lg font-medium text-center lg:text-left lg:text-base lg:pt-2 xl:text-lg">
           Bersama Menciptakan Dunia dengan Air Bersih untuk Semua.
         </h1>
       </div>
 
-      <div className="flex pt-8 gap-24 lg:gap-16 xl:gap-20">
+      <div className="flex gap-24 pt-8 lg:gap-16 xl:gap-20">
         <div>
           <h1 className="text-xl font-bold xl:text-2xl">Dukungan</h1>
-          <ul className="pt-3 flex flex-col gap-2 lg:gap-1 xl:gap-3 xl:text-lg">
-            <li>Tentang Kami</li>
-            <li>Ketentuan</li>
-            <li>Kebijakan Privasi</li>
+          <ul className="flex flex-col gap-2 pt-3 lg:gap-1 xl:gap-3 xl:text-lg">
+            <li className="cursor-pointer"><a href="/about">Tentang Kami</a></li>
+            <li className="cursor-pointer"><a href="/termsOfService">Ketentuan</a></li>
+            <li className="cursor-pointer"><a href="/privacyPolicy">Kebijakan Privasi</a></li>
           </ul>
         </div>
         <div>
           <h1 className="text-xl font-bold xl:text-2xl">Informasi</h1>
-          <ul className="pt-3 flex flex-col gap-2 lg:gap-1 xl:gap-3 xl:text-lg">
-            <li>Blog</li>
-            <li>Contact</li>
-            <li>Bantuan</li>
+          <ul className="flex flex-col gap-2 pt-3 lg:gap-1 xl:gap-3 xl:text-lg">
+            <li className="cursor-pointer"><a href="">Blog</a></li>
+            <li className="cursor-pointer"><a href="">Contact</a></li>
+            <li className="cursor-pointer"><a href="">Bantuan</a></li>
           </ul>
         </div>
       </div>
       <div className="flex flex-col items-center justify-center">
-        <h1 className="text-2xl pt-8 xl:pt-9 font-extrabold xl:text-3xl lg:pt-10">
+        <h1 className="pt-8 text-2xl font-extrabold xl:pt-9 xl:text-3xl lg:pt-10">
           Sosial Media Kami
         </h1>
-        <p className="font-medium text-xs xl:text-base">
+        <p className="text-xs font-medium xl:text-base">
           &copy; 2024 Hydrocare All Rights Reserved
         </p>
-        <div className="flex py-4 gap-2">
+        <div className="flex gap-2 py-4">
           <a href="">
             <img src={Instagram} alt="Instagram" />
           </a>
