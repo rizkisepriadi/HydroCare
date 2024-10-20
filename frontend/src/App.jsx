@@ -12,7 +12,7 @@ import ArticlePage from "./pages/articles.jsx";
 
 function App() {
   return (
-    <Routes>>
+    <Routes>
       <Route path="/" element={<Homepage />} />
       <Route path="/article" element={<Article />} />
       <Route path="/about" element={<About />} />
@@ -23,7 +23,7 @@ function App() {
       <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
       <Route path="/termsOfService" element={<TermsOfService />} />
       <Route path="/articles" element={<ArticlePage />} />
-      <Route path="/contact" element={<Contact />}/>
+      <Route path="/contact" element={<Contact />} />
     </Routes>
   );
 }

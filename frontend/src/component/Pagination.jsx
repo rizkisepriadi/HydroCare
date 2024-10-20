@@ -1,34 +1,36 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios"; // Ensure axios is imported
+import axios from "axios";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { useParams } from "react-router-dom"; // Ensure this import is correct
+import { useParams } from "react-router-dom";
 import kutip from "../assets/kutip.svg";
 
 const TextCarousel = () => {
   const { user } = useAuthContext();
-  const [feedback, setFeedback] = useState([]); // Initialize as an empty array
-  const { id } = useParams(); // If you need `id`, make sure it's used correctly
+  const [feedback, setFeedback] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
-    // Fetch feedback data
     axios
-      .get(`http://localhost:5000/feedback`) // Ensure this endpoint returns the expected structure
+      .get(`http://localhost:5000/feedback`)
       .then((response) => {
         if (response.status === 200) {
-          setFeedback(response.data.data); // Adjust this if your API structure is different
+          setFeedback(response.data.data);
         } else {
-          console.error("Failed to fetch feedback, status code:", response.status);
+          console.error(
+            "Failed to fetch feedback, status code:",
+            response.status
+          );
         }
       })
       .catch((err) => {
         console.error("Error fetching feedback:", err);
       });
-  }, [user]); // Remove `id` if it's not being used
+  }, [user]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    if (feedback.length > 0) { // Only set interval if there's feedback
+    if (feedback.length > 0) {
       const intervalId = setInterval(() => {
         setCurrentIndex((prevIndex) =>
           prevIndex === feedback.length - 1 ? 0 : prevIndex + 1
@@ -39,12 +41,11 @@ const TextCarousel = () => {
     }
   }, [feedback.length]);
 
-  // Check if there are any feedback items
   if (feedback.length === 0) {
-    return <div>Loading...</div>; // Show loading until feedback is fetched
+    return <div>Loading...</div>;
   }
 
-  const currentFeedback = feedback[currentIndex]; // Get the current feedback based on index
+  const currentFeedback = feedback[currentIndex];
 
   return (
     <div className="flex flex-col items-start max-w-[720px] flex-wrap">
@@ -56,10 +57,8 @@ const TextCarousel = () => {
         />
       </div>
       <div className="text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold text-center md:text-left md:pt-0 text-primary">
-        {currentFeedback.desc} {/* Access text property from the current feedback */}
+        {currentFeedback.desc}
       </div>
-
-      {/* User Info */}
       <div className="flex pt-1 w-full justify-between">
         <div className="flex gap-2">
           <div className="avatar">
@@ -70,10 +69,10 @@ const TextCarousel = () => {
           <div className="flex justify-center items-center text-primary">
             <div className="flex flex-col">
               <h1 className="text-xs md:text-base font-extrabold">
-                {currentFeedback.name} {/* Access name from the current feedback */}
+                {currentFeedback.name}
               </h1>
               <p className="text-[10px] md:text-xs font-medium">
-                {currentFeedback.position} {/* Access position from the current feedback */}
+                {currentFeedback.position}
               </p>
             </div>
           </div>

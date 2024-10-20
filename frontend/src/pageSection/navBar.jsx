@@ -86,16 +86,16 @@ export default function Navbar() {
                     text={"Sign In"}
                     className="w-[85px] h-[20px] text-base"
                     onClick={() => {
-                      setOpenLogin(true);
-                      setOpenRegister(false);
+                      setOpenLogin(false);
+                      setOpenRegister(true);
                     }}
                   />
                   <Button
                     text={"Login"}
                     className="bg-transparent w-[85px] h-[20px] text-base"
                     onClick={() => {
-                      setOpenRegister(true);
-                      setOpenLogin(false);
+                      setOpenRegister(false);
+                      setOpenLogin(true);
                     }}
                   />
                 </div>
@@ -122,7 +122,7 @@ export default function Navbar() {
               <a href="/articles">Artikel</a>
             </li>
             <li className="cursor-pointer">
-              <a href="">kontak</a>
+              <a href="/contact">Kontak</a>
             </li>
           </ul>
           {isLogin ? (

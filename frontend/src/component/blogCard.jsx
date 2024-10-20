@@ -20,13 +20,12 @@ export default function BlogCard({ article }) {
             month: "short",
             year: "numeric",
           })}{" "}
-          {/* Format tanggal dinamis */}
         </p>
         <p className="text-xs md:text-lg lg:text-base xl:text-lg font-extrabold text-wrap">
-          {article.title} {/* Menampilkan judul artikel */}
+          {article.title}
         </p>
         <p className="pb-3 lg:pb-3 text-[10px] md:text-[15px] lg:text-sm xl:text-base text-wrap">
-          {article.summary} {/* Menampilkan ringkasan artikel */}
+          {article.summary}
         </p>
       </div>
     </a>

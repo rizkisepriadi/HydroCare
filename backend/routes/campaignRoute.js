@@ -15,7 +15,7 @@ router.post("/campaign", requireAuth, async (req, res) => {
       end_date,
       event_type,
       finished,
-      image
+      image,
     } = req.body;
 
     if (
@@ -24,7 +24,7 @@ router.post("/campaign", requireAuth, async (req, res) => {
       !location ||
       !start_date ||
       !end_date ||
-      !event_type 
+      !event_type
     ) {
       return res.status(400).json({
         message:
@@ -41,7 +41,7 @@ router.post("/campaign", requireAuth, async (req, res) => {
       event_type,
       finished,
       user_id: req.user._id,
-      image
+      image,
     };
     const campaign = await Campaign.create(newCampaign);
 

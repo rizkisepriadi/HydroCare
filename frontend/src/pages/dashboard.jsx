@@ -8,7 +8,7 @@ import { jwtDecode } from "jwt-decode";
 export default function Dashboard() {
   const [isUser, setIsUser] = useState({});
   const { user } = useAuthContext();
-  const [imageFile, setImageFile] = useState(null); // State for the uploaded image
+  const [imageFile, setImageFile] = useState(null);
 
   useEffect(() => {
     if (user && user.token) {
@@ -33,8 +33,6 @@ export default function Dashboard() {
     if (file) {
       const formData = new FormData();
       formData.append("image", file);
-
-      // Upload the image to the server
       axios
         .post(`http://localhost:5000/user/${isUser._id}/upload`, formData, {
           headers: {
@@ -43,7 +41,6 @@ export default function Dashboard() {
           },
         })
         .then((response) => {
-          // Update user state with the new image URL
           setIsUser((prev) => ({
             ...prev,
             image: response.data.image,
@@ -73,9 +70,12 @@ export default function Dashboard() {
                 <div className="rounded-full w-[100px] md:w-[180px] xl:w-[200px]">
                   {/* Add onClick to the image */}
                   <img
-                    src={isUser.image || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}
+                    src={
+                      isUser.image ||
+                      "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    }
                     alt="Profile"
-                    onClick={() => document.getElementById("fileInput").click()} // Trigger input on click
+                    onClick={() => document.getElementById("fileInput").click()}
                     className="cursor-pointer"
                   />
                 </div>
@@ -84,7 +84,7 @@ export default function Dashboard() {
                   id="fileInput"
                   accept="image/jpeg, image/png"
                   onChange={handleImageUpload}
-                  style={{ display: "none" }} // Hide the file input
+                  style={{ display: "none" }}
                 />
               </div>
               <div className="flex items-center justify-center text-primary">

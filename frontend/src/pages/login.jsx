@@ -11,7 +11,7 @@ export default function Login({ isOpen, setIsOpen }) {
   const { login, isLoading, error } = useLogin();
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevents the form from reloading the page
+    e.preventDefault();
     try {
       await login(email, password);
       enqueueSnackbar("Login successful", {

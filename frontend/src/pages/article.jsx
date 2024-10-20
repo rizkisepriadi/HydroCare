@@ -12,12 +12,11 @@ export default function Article() {
   const [isUser, setIsUser] = useState({});
   const { id } = useParams();
   const { user } = useAuthContext();
-  const [article, setArticle] = useState({}); // Ubah default dari array ke object
-  const [articles, setArticles] = useState([]); // Pastikan ini array
+  const [article, setArticle] = useState({});
+  const [articles, setArticles] = useState([]);
   const [currentArticleId, setCurrentArticleId] = useState("");
 
   useEffect(() => {
-    // Fetch article based on ID
     axios
       .get(`http://localhost:5000/article/${id}`)
       .then((response) => {
@@ -43,7 +42,6 @@ export default function Article() {
         console.error("Error fetching article:", err);
       });
 
-    // Fetch user data if user is authenticated
     if (user && user.token) {
       const decoded = jwtDecode(user.token);
       axios
@@ -59,7 +57,7 @@ export default function Article() {
           console.error("Error fetching user data:", err);
         });
     }
-  }, [user, id]); // Tambahkan dependency array
+  }, [user, id]);
 
   const handleReadArticle = (articleId) => {
     setCurrentArticleId(articleId);
@@ -106,13 +104,13 @@ export default function Article() {
               Baca artikel lainnya...
             </h1>
             {articles
-              .filter((item) => item._id !== currentArticleId) // Saring artikel yang sedang dibaca
-              .slice(0, 2) // Ambil 3 artikel pertama
+              .filter((item) => item._id !== currentArticleId)
+              .slice(0, 2)
               .map((item) => (
                 <BlogCard
                   key={item._id}
                   article={item}
-                  onRead={() => handleReadArticle(item._id)} // Atur fungsi saat artikel dibaca
+                  onRead={() => handleReadArticle(item._id)}
                 />
               ))}
           </div>

@@ -33,7 +33,6 @@ export function ProfileSection() {
     }
   }, [user]);
 
-  // Perbarui state ketika isUser diperbarui
   useEffect(() => {
     if (isUser) {
       setIsName(isUser.name || "");
@@ -47,7 +46,6 @@ export function ProfileSection() {
     }
   }, [isUser]);
 
-  // Fungsi konversi tanggal lahir dari database ke format dd-mm-yyyy
   function convertBirthDate(birthDate) {
     const dateObj = new Date(birthDate);
     const day = String(dateObj.getDate()).padStart(2, "0");
@@ -56,7 +54,6 @@ export function ProfileSection() {
     return `${day}-${month}-${year}`;
   }
 
-  // Fungsi untuk mengonversi tanggal ke format mm/dd/yyyy sebelum dikirim ke API
   function formatBirthDateForApi(birthDate) {
     const [day, month, year] = birthDate.split("-");
     return `${month}/${day}/${year}`;
@@ -69,13 +66,12 @@ export function ProfileSection() {
       return;
     }
 
-    // Konversi tanggal lahir ke format API yang benar
     const formattedBirthDate = formatBirthDateForApi(isBirthDate);
 
     const data = {
       name: isName,
       city: isCity,
-      birth_date: formattedBirthDate, // gunakan tanggal yang sudah diformat
+      birth_date: formattedBirthDate,
       telp: isTelp,
     };
 

@@ -5,21 +5,21 @@ export default function OverviewSection() {
   const isLargeScreen = useMediaQuery("(max-width: 768px)");
 
   const [activeSlide, setActiveSlide] = useState("left");
-  const [transitionClass, setTransitionClass] = useState("translate-x-0"); // Default horizontal position
+  const [transitionClass, setTransitionClass] = useState("translate-x-0");
 
   // Slide switching
   useEffect(() => {
     const interval = setInterval(() => {
       setTransitionClass(
         activeSlide === "left" ? "translate-x-full" : "-translate-x-full"
-      ); // Slide out to right for left, and to left for right
+      );
       setTimeout(() => {
         setActiveSlide((prevSlide) =>
           prevSlide === "left" ? "right" : "left"
         );
-        setTransitionClass("translate-x-0"); // Reset position for the new slide
-      }, 500); // Match the transition duration
-    }, 4000); // Change every 4 seconds
+        setTransitionClass("translate-x-0");
+      }, 500);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [activeSlide]);
@@ -31,7 +31,6 @@ export default function OverviewSection() {
         <div className="absolute bottom-0 left-0 mb-20 px-14 bg-base-200 h-[120px] w-full shadow-lg">
           <div className="flex justify-center items-center w-full mx-auto h-full max-h-[900px]">
             {activeSlide === "left" ? (
-              /* Left section (statistik) */
               <div
                 className={`flex justify-between items-center w-full text-primary transition-transform duration-500 ease-in-out ${
                   activeSlide === "left" ? transitionClass : "translate-x-full"
@@ -51,7 +50,6 @@ export default function OverviewSection() {
                 </div>
               </div>
             ) : (
-              /* Right section (negara) */
               <div
                 className={`flex justify-center items-center gap-5 text-primary transition-transform duration-500 ease-in-out ${
                   activeSlide === "right"
@@ -61,8 +59,8 @@ export default function OverviewSection() {
               >
                 <div className="flex flex-col items-center justify-center">
                   <p className="font-medium text-center text-Base">
-                    Kota-kota dengan Kontribusi User Terbesar untuk
-                    Kesuksesan Program Ini
+                    Kota-kota dengan Kontribusi User Terbesar untuk Kesuksesan
+                    Program Ini
                   </p>
                   <ul className="grid items-center justify-center grid-flow-col grid-rows-2 text-base font-bold list-disc sm:flex sm:justify-center sm:items-center">
                     <li className="mx-4 ">Indonesia</li>
@@ -76,7 +74,7 @@ export default function OverviewSection() {
           </div>
         </div>
       ) : (
-        <div className="absolute bottom-0 mb-12 left-0 h-[160px] w-full bg-base-200 p-5 shadow-lg px-[7%]" >
+        <div className="absolute bottom-0 mb-12 left-0 h-[160px] w-full bg-base-200 p-5 shadow-lg px-[7%]">
           <div className="flex justify-center gap-20 items-center w-full mx-auto h-full max-h-[900px]">
             {/* Left section (statistik) */}
             <div className="flex justify-center gap-10 text-primary">
@@ -108,7 +106,8 @@ export default function OverviewSection() {
             {/* Right section (negara) */}
             <div className="flex flex-col justify-between text-primary">
               <p className="text-lg font-medium break-all">
-                Kota-kota dengan Kontribusi User Terbesar untuk Kesuksesan Program Ini
+                Kota-kota dengan Kontribusi User Terbesar untuk Kesuksesan
+                Program Ini
               </p>
               <ul className="flex flex-wrap pl-5 text-base font-bold list-disc justify-stretch">
                 <li className="pr-8">Palembang</li>

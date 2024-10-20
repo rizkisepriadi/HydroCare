@@ -15,7 +15,6 @@ export default function CardSlide() {
   const [openRegister, setOpenRegister] = useState(false);
 
   useEffect(() => {
-    // Fetch campaigns
     axios
       .get(`http://localhost:5000/campaign`)
       .then((response) => {
@@ -25,7 +24,6 @@ export default function CardSlide() {
         console.error("Error fetching campaign:", err);
       });
 
-    // Fetch user if logged in
     if (user && user.token) {
       const decoded = jwtDecode(user.token);
       axios
@@ -56,7 +54,6 @@ export default function CardSlide() {
       </div>
 
       <div className="relative">
-        {/* Left Scroll Button */}
         <button
           onClick={() => {
             const scrollContainer = document.getElementById("scroll-container");
@@ -138,7 +135,6 @@ export default function CardSlide() {
           ))}
         </div>
 
-        {/* Right Scroll Button */}
         <button
           onClick={() => {
             const scrollContainer = document.getElementById("scroll-container");

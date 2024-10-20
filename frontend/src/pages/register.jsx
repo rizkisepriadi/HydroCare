@@ -14,7 +14,7 @@ export default function Register({ isOpen, setIsOpen }) {
   const { signup, isLoading, error } = useSignup();
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Mencegah refresh halaman saat mengirim form
+    e.preventDefault();
     try {
       await signup(name, email, password);
       enqueueSnackbar("Registration successful", {
@@ -66,7 +66,7 @@ export default function Register({ isOpen, setIsOpen }) {
           <Input
             type="text"
             value={name}
-            placeholder="Enter Your Name" // Ubah placeholder
+            placeholder="Enter Your Name"
             onChange={(e) => setName(e.target.value)}
             required
           />
@@ -88,9 +88,9 @@ export default function Register({ isOpen, setIsOpen }) {
           />
           <input
             type="submit"
-            value="Daftar" // Ubah text button
+            value="Daftar"
             className="btn btn-primary text-white"
-            disabled={isLoading} // Nonaktifkan tombol saat loading
+            disabled={isLoading}
           />
         </form>
         <div className="flex flex-col items-center pt-3 font-semibold">

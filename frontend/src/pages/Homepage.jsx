@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../pageSection/navBar.jsx";
+import Navbar from "../pageSection/navbar.jsx";
 import Campaign from "../pageSection/campaignSection.jsx";
 import Footer from "../pageSection/footer.jsx";
 import FAQ from "../pageSection/faq.jsx";
@@ -39,7 +39,7 @@ export default function Homepage() {
 
   return (
     <div>
-      <Navbar isLogin={isLogin} isUser={isUser}/>
+      <Navbar isLogin={isLogin} isUser={isUser} />
       {/* Hero*/}
       <Hero />
       {/* Invitation */}

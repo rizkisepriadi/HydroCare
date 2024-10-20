@@ -27,12 +27,9 @@ export default function Campaign() {
         })
         .then((response) => {
           setisUser(response.data);
-
-          // Mengecek apakah pengguna sudah bergabung di kampanye
           const isUserJoined = response.data.campaigns.includes(id);
-          setIsJoining(isUserJoined); // Set state isJoining sesuai dengan hasil cek
+          setIsJoining(isUserJoined);
 
-          // Ambil data kampanye
           return axios.get(`http://localhost:5000/campaign/${id}`, {
             headers: {
               Authorization: `Bearer ${user.token}`,
@@ -46,12 +43,12 @@ export default function Campaign() {
           console.error(err);
         });
     }
-  }, [user, id]); // Pastikan untuk menambahkan id ke dalam array dependencies
+  }, [user, id]);
 
   const joinCampaign = async () => {
     if (user && user.token) {
-      setShowConfirm(false); // Hide confirmation modal
-      setIsJoining(false); // Set joining state
+      setShowConfirm(false);
+      setIsJoining(false);
 
       try {
         const decoded = jwtDecode(user.token);
@@ -145,7 +142,7 @@ export default function Campaign() {
                 </div>
               ) : (
                 <button
-                  onClick={() => setShowConfirm(true)} // Show confirmation modal
+                  onClick={() => setShowConfirm(true)}
                   className="btn btn-block rounded-xl border border-primary font-bold text-primary"
                 >
                   Bergabung

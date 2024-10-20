@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import BlogCard from "../component/blogCard.jsx";
 import { useAuthContext } from "../hooks/useAuthContext";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode"; // Jangan gunakan destructure { jwtDecode }
+import { jwtDecode } from "jwt-decode";
 
 export default function Article() {
   const [isUser, setisUser] = useState({});
   const { user } = useAuthContext();
-  const [articles, setArticles] = useState([]); // Pastikan ini array
+  const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    // Jika user terautentikasi, ambil informasi user
     axios
       .get(`http://localhost:5000/article`)
       .then((response) => {
@@ -43,7 +42,7 @@ export default function Article() {
         Article
       </h1>
       <div className="flex flex-col">
-        <a href="/articlePage" className="flex justify-end text-primary pb-2">
+        <a href="/articles" className="flex justify-end text-primary pb-2">
           Lihat Semua
         </a>
         <div className="flex flex-col lg:flex-row lg:justify-center gap-5 lg:gap-4 xl:gap-5">

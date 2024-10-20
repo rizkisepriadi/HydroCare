@@ -1,5 +1,5 @@
 import React from "react";
-import Pagination from "../component/pagination";
+import Pagination from "../component/Pagination";
 
 export default function FeedBack() {
   return (
