@@ -1,5 +1,4 @@
 import React from "react";
-import CampaignImage from "../assets/Sosialisasi.svg";
 import CardSlide from "../component/cardSlide.jsx";
 import CampaignInfo from "../component/campaignInfo.jsx";
 import Footer from "../pageSection/footer.jsx";
@@ -13,7 +12,7 @@ import { Button } from "../component/Button.module.jsx";
 import Login from "./login.jsx";
 import { CampaignButton } from "../component/Button.module.jsx";
 
-export default function campaignPage() {
+export default function campaigns() {
   const [openlogin, setOpenLogin] = useState(false);
   const [openRegister, setOpenRegister] = useState(false);
   const { user } = useAuthContext();
@@ -21,6 +20,7 @@ export default function campaignPage() {
   const [isLogin, setisLogin] = useState(false);
   const [campaign, setCampaign] = useState({});
 
+  // Mengambil data kampanye dan informasi pengguna saat komponen dimuat
   useEffect(() => {
     axios
       .get(`http://localhost:5000/campaign/6711f9da7c87821737ba1b56`)
@@ -61,7 +61,7 @@ export default function campaignPage() {
           </div>
 
           {/* Right Section */}
-          <div className="flex flex-col justify-between w-full lg:w-[900px] px-4 mb-4 pb-4 lg:mb-0 lg:pb-0 lg:justify-start flex-grow lg:p-11 xl:p-16 lg:mt-8">
+          <div className="flex flex-col justify-between w-full lg:w-[900px] px-4 mb-6 pb-4 lg:mb-0 lg:pb-0 lg:justify-start flex-grow lg:p-11 xl:p-16 lg:mt-8">
             <div>
               <h1 className="pt-4 text-xl font-bold text-primary md:text-lg xl:text-2xl">
                 {campaign.title}
@@ -77,33 +77,7 @@ export default function campaignPage() {
               <div className="pb-2">
                 <p>{campaign.location}</p>
               </div>
-            </div>
-            <div className="pb-4 lg:pb-0">
-              <div className="card-actions justify-end">
-                {isLogin ? (
-                  <CampaignButton
-                    className="bg-white"
-                    link={`/campaign/${campaign._id}`}
-                  />
-                ) : (
-                  <Button
-                    text={"Login"}
-                    className="text-primary bg-white shadow-lg"
-                    onClick={() => {
-                      setOpenRegister(false);
-                      setOpenLogin(true);
-                    }}
-                  />
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative">
-          <div className="absolute flex justify-center transform -translate-x-1/2 -translate-y-1/2 left-1/2">
-            <div>
-              <div className="rounded-xl bg-[#0063A7] p-3 flex justify-between gap-3 items-center text-white mx-4 md:mx-12 w-[400px]">
+              <div className="flex justify-between items-center w-[300px]">
                 <div className="flex flex-col justify-center text-center">
                   <h1 className="font-bold">Tanggal Mulai</h1>
                   <h2>
@@ -128,6 +102,52 @@ export default function campaignPage() {
                         year: "numeric",
                       })}
                   </h2>
+                </div>
+              </div>
+            </div>
+            <div className="pb-4 lg:pb-0">
+              <div className="justify-end card-actions">
+                {isLogin ? (
+                  <CampaignButton
+                    className="bg-white"
+                    link={`/campaign/${campaign._id}`}
+                  />
+                ) : (
+                  <Button
+                    text={"Login"}
+                    className="bg-white shadow-lg text-primary"
+                    onClick={() => {
+                      setOpenRegister(false);
+                      setOpenLogin(true);
+                    }}
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative">
+          <div className="absolute flex justify-center transform -translate-x-1/2 -translate-y-1/2 left-1/2">
+            <div className="flex items-center justify-center">
+              {/* Left Section */}
+              <div className="rounded-l-xl bg-[#0063A7] flex justify-center items-center text-white w-[250px] lg:w-[550px] p-3 lg:p-6">
+                <div className="flex flex-col justify-start">
+                  <p className="text-lg font-semibold">Buat Kampanye Sendiri</p>
+                  <p className="text-sm text-justify">
+                    Ingin Mengajukan Kampanye Kamu Sendiri? Hubungi kami sekarang!
+                  </p>
+                </div>
+              </div>
+
+              {/* Right Section */}
+              <div className="rounded-r-xl bg-[#2e7db1] flex justify-center items-center text-white p-3 lg:p-6 h-full">
+                <div>
+                  <a 
+                    href="/contact"
+                    className="btn px-6 font-bold text-primary shadow-lg bg-[#EAF3F9] w-[120px] text-center">
+                    Hubungi Kami
+                  </a>
                 </div>
               </div>
             </div>

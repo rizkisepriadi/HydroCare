@@ -5,6 +5,7 @@ import Footer from "../pageSection/footer.jsx";
 export default function privacyPolicy() {
   const [expandedSection, setExpandedSection] = useState(null);
 
+  // Mengatur ekspansi bagian yang dipilih
   const toggleExpand = (section) => {
     setExpandedSection(expandedSection === section ? null : section);
   };

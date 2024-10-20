@@ -7,7 +7,7 @@ export default function OverviewSection() {
   const [activeSlide, setActiveSlide] = useState("left");
   const [transitionClass, setTransitionClass] = useState("translate-x-0");
 
-  // Slide switching
+  // Mengelola transisi slide
   useEffect(() => {
     const interval = setInterval(() => {
       setTransitionClass(
@@ -24,7 +24,7 @@ export default function OverviewSection() {
     return () => clearInterval(interval);
   }, [activeSlide]);
 
-  // Slide content for both large and small screens
+  // Konten slide untuk dua versi tampilan (large and small)
   return (
     <div className="relative w-full opacity-70 px-[7%]">
       {isLargeScreen ? (

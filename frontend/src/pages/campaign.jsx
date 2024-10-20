@@ -16,6 +16,7 @@ export default function Campaign() {
   const [showConfirm, setShowConfirm] = useState(false);
   const [isJoining, setIsJoining] = useState(false);
 
+  // Mengambil data pengguna dan kampanye saat komponen dimuat
   useEffect(() => {
     if (user && user.token) {
       const decoded = jwtDecode(user.token);
@@ -45,6 +46,7 @@ export default function Campaign() {
     }
   }, [user, id]);
 
+  // Bergabung dengan kampanye
   const joinCampaign = async () => {
     if (user && user.token) {
       setShowConfirm(false);
@@ -81,6 +83,8 @@ export default function Campaign() {
     }
   };
 
+
+  // Mengubah format tanggal menjadi format yang lebih mudah dibaca
   function convertDate(date) {
     const dateObj = new Date(date);
     const day = String(dateObj.getDate()).padStart(2, "0");
@@ -111,46 +115,46 @@ export default function Campaign() {
         <img
           src={`/image/${campaign.image}.svg`}
           alt=""
-          className="w-full h-full object-cover"
+          className="object-cover w-full h-full"
         />
       </div>
       <div className="flex flex-col items-center lg:items-start px-[5%] py-5 text-primary">
-        <div className="flex justify-center items-center gap-3 mb-5">
+        <div className="flex items-center justify-center gap-3 mb-5">
           <div className="avatar">
             <div className="w-[120px] lg:w-36 xl:w-44 rounded">
               <img
                 src={`/image/${campaign.image}.svg`}
                 alt="Border"
-                className="bg-cover bg-center h-full w-full"
+                className="w-full h-full bg-center bg-cover"
               />
             </div>
           </div>
-          <h1 className="text-primary font-bold text-lg md:text-xl lg:text-3xl xl:text-4xl">
+          <h1 className="text-lg font-bold text-primary md:text-xl lg:text-3xl xl:text-4xl">
             {campaign.title}
           </h1>
         </div>
 
-        <div className="flex flex-col lg:flex-row-reverse lg:gap-10 gap-3 w-full">
-          <div className="flex flex-col lg:w-1/3 gap-5">
+        <div className="flex flex-col w-full gap-3 lg:flex-row-reverse lg:gap-10">
+          <div className="flex flex-col gap-5 lg:w-1/3">
             <div className="flex flex-col gap-2">
               <h1 className="font-semibold md:text-center lg:text-start lg:text-lg xl:text-xl">
                 Ayo Berpartisipasi
               </h1>
               {isJoining ? (
-                <div className="w-full rounded-xl border border-primary p-3 font-bold text-primary bg-white">
+                <div className="w-full p-3 font-bold bg-white border rounded-xl border-primary text-primary">
                   <h1 className="text-center">Sudah Bergabung</h1>
                 </div>
               ) : (
                 <button
                   onClick={() => setShowConfirm(true)}
-                  className="btn btn-block rounded-xl border border-primary font-bold text-primary"
+                  className="font-bold border btn btn-block rounded-xl border-primary text-primary"
                 >
                   Bergabung
                 </button>
               )}
             </div>
 
-            <div className="flex flex-col md:flex-row md:justify-between lg:flex-col md:items-center justify-around lg:items-start gap-2 lg:gap-5 ">
+            <div className="flex flex-col justify-around gap-2 md:flex-row md:justify-between lg:flex-col md:items-center lg:items-start lg:gap-5 ">
               <div className="flex flex-col gap-1">
                 <h1 className="font-semibold lg:text-lg xl:text-xl">Jadwal</h1>
                 <table className="xl:text-lg">
@@ -172,7 +176,7 @@ export default function Campaign() {
               </div>
               <div>
                 <h1 className="font-semibold lg:text-lg xl:text-xl">Lokasi</h1>
-                <div className="flex gap-2 items-center xl:text-lg ">
+                <div className="flex items-center gap-2 xl:text-lg ">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="13"
@@ -189,7 +193,7 @@ export default function Campaign() {
                   </svg>
                   <p className="font-bold">{campaign.location}</p>
                 </div>
-                <div className="flex gap-2 items-center xl:text-lg">
+                <div className="flex items-center gap-2 xl:text-lg">
                   <svg
                     width="12"
                     height="17"
@@ -211,30 +215,30 @@ export default function Campaign() {
           </div>
 
           <div className="lg:w-3/4">
-            <h1 className="font-semibold py-2 lg:text-lg xl:text-xl">
+            <h1 className="py-2 font-semibold lg:text-lg xl:text-xl">
               Deskripsi
             </h1>
-            <p className="whitespace-pre-line lg:text-justify text-sm xl:text-lg md:text-base">{`${campaign.desc}`}</p>
+            <p className="text-sm whitespace-pre-line lg:text-justify xl:text-lg md:text-base">{`${campaign.desc}`}</p>
           </div>
         </div>
       </div>
       <Footer />
 
       {showConfirm && (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-lg p-5">
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div className="p-5 bg-white rounded-lg shadow-lg">
             <h2 className="text-lg font-semibold">Konfirmasi Bergabung</h2>
             <p>Apakah Anda yakin ingin bergabung dengan kampanye ini?</p>
             <div className="flex justify-end gap-3 mt-4">
               <button
                 onClick={() => setShowConfirm(false)}
-                className="btn border border-gray-300 text-gray-700 hover:bg-gray-200 rounded"
+                className="text-gray-700 border border-gray-300 rounded btn hover:bg-gray-200"
               >
                 Batal
               </button>
               <button
                 onClick={joinCampaign}
-                className="btn bg-primary text-white rounded"
+                className="text-white rounded btn bg-primary"
                 disabled={isJoining}
               >
                 {isJoining ? "Bergabung..." : "Ya, Bergabung!"}

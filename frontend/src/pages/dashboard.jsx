@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Tabs from "../component/tabs";
 import Logo from "../assets/logo.svg";
+import DefaultUser from "../assets/defaultUser.svg";
 import { useAuthContext } from "../hooks/useAuthContext";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
@@ -10,6 +11,7 @@ export default function Dashboard() {
   const { user } = useAuthContext();
   const [imageFile, setImageFile] = useState(null);
 
+  // Mengambil informasi pengguna dari server saat komponen dimuat
   useEffect(() => {
     if (user && user.token) {
       const decoded = jwtDecode(user.token);
@@ -28,6 +30,7 @@ export default function Dashboard() {
     }
   }, [user]);
 
+  // Mengunggah gambar profil pengguna ke server
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -65,14 +68,14 @@ export default function Dashboard() {
                 </h1>
               </a>
             </div>
-            <div className="flex items-center justify-center md:flex-col mt-5">
+            <div className="flex items-center justify-center mt-5 md:flex-col">
               <div className="pr-5 avatar md:pr-0 md:pb-5">
                 <div className="rounded-full w-[100px] md:w-[180px] xl:w-[200px]">
-                  {/* Add onClick to the image */}
+                  {/* onClick tambah image */}
                   <img
                     src={
                       isUser.image ||
-                      "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                      DefaultUser
                     }
                     alt="Profile"
                     onClick={() => document.getElementById("fileInput").click()}

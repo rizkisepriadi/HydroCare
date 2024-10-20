@@ -14,6 +14,7 @@ export default function CardSlide() {
   const [openlogin, setOpenLogin] = useState(false);
   const [openRegister, setOpenRegister] = useState(false);
 
+  // Untuk fetch API saat pertama kali masuk kehalaman
   useEffect(() => {
     axios
       .get(`http://localhost:5000/campaign`)
@@ -79,20 +80,20 @@ export default function CardSlide() {
                 className="object-cover w-full h-48 mb-2 rounded-lg"
               />
 
-              <h3 className="mb-2 text-lg font-semibold">{item.title}</h3>
+              <h1 className="mb-2 font-bold text-right">{item.event_type}</h1>
+              <h3 className="mb-1 text-lg font-semibold h-[53px]">{item.title}</h3>
 
               <div className="flex items-center justify-between mb-4">
-                <p className="text-sm font-semibold max-w-[200px] max-h-[40px]">
+                <p className="text-sm font-semibold h-[20px]">
                   {item.location}
                 </p>
-                <h1 className="text-right">{item.event_type}</h1>
               </div>
 
-              <div className="h-20 mb-3 overflow-hidden">
+              <div className="h-20 mb-2 overflow-hidden">
                 <div className="flex flex-col">
                   <p className="break-words whitespace-normal">
-                    {item.desc.split(" ").slice(0, 10).join(" ")}
-                    {item.desc.split(" ").length > 10 && "..."}
+                    {item.desc.split(" ").slice(0, 8).join(" ")}
+                    {item.desc.split(" ").length > 8 && "..."}
                   </p>
                   <span className="font-semibold">
                     <p>Baca Selengkapnya</p>
@@ -116,7 +117,7 @@ export default function CardSlide() {
                 <a>
                   {isLogin ? (
                     <CampaignButton
-                      className="font-bold border-solid bg-transparent btn rounded-xl border-primary text-primary w-full"
+                      className="w-full font-bold bg-transparent border-solid btn rounded-xl border-primary text-primary"
                       link={`/campaign/${item._id}`}
                     />
                   ) : (

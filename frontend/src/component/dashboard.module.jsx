@@ -15,6 +15,7 @@ export function ProfileSection() {
   const [isTelp, setIsTelp] = useState("");
   const { user } = useAuthContext();
 
+  // Mengambil data pengguna saat komponen pertama kali dimuat
   useEffect(() => {
     if (user && user.token) {
       const decoded = jwtDecode(user.token);
@@ -33,6 +34,7 @@ export function ProfileSection() {
     }
   }, [user]);
 
+  // Mengupdate state berdasarkan data pengguna yang diambil
   useEffect(() => {
     if (isUser) {
       setIsName(isUser.name || "");
@@ -46,6 +48,7 @@ export function ProfileSection() {
     }
   }, [isUser]);
 
+  // Fungsi untuk mengonversi format tanggal lahir ke format DD-MM-YYYY
   function convertBirthDate(birthDate) {
     const dateObj = new Date(birthDate);
     const day = String(dateObj.getDate()).padStart(2, "0");
@@ -54,11 +57,13 @@ export function ProfileSection() {
     return `${day}-${month}-${year}`;
   }
 
+  // Fungsi untuk mengonversi tanggal lahir ke format MM/DD/YYYY untuk API
   function formatBirthDateForApi(birthDate) {
     const [day, month, year] = birthDate.split("-");
     return `${month}/${day}/${year}`;
   }
 
+  // Fungsi untuk menangani pengiriman formulir
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!user || !user.token) {
@@ -151,7 +156,7 @@ export function ProfileSection() {
           />
         </div>
         <div className="flex justify-end">
-          <button type="submit" className="btn btn-primary text-white">
+          <button type="submit" className="text-white btn btn-primary">
             Simpan
           </button>
         </div>
@@ -353,7 +358,7 @@ export function AkunSection() {
           className="w-full p-2 mb-4 bg-transparent border-b-2 border-[#8DB2C7] focus:outline-none"
         />
         <div className="flex justify-end">
-          <button type="submit" className="btn btn-primary text-white">
+          <button type="submit" className="text-white btn btn-primary">
             Simpan
           </button>
         </div>
