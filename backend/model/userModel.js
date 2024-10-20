@@ -26,6 +26,9 @@ const userSchema = mongoose.Schema(
     city: {
       type: String,
     },
+    image: {
+      type: String
+    },
     campaigns: [
       {
         type: mongoose.Schema.Types.ObjectId,

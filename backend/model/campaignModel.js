@@ -28,6 +28,9 @@ const campaignSchema = mongoose.Schema(
     },
     finished: {
       type: Boolean
+    },
+    image: {
+      type: String
     }
   },
   {
