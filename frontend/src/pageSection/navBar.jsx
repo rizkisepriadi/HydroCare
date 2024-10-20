@@ -73,10 +73,10 @@ export default function Navbar() {
                   <a href="/">Home</a>
                 </li>
                 <li className="cursor-pointer">
-                  <a href="/campaignPage">Kampanye</a>
+                  <a href="/campaigns">Kampanye</a>
                 </li>
                 <li className="cursor-pointer">
-                  <a href="/articlePage">Artikel</a>
+                  <a href="/articles">Artikel</a>
                 </li>
                 <li className="cursor-pointe">
                   <a href="/contact">Kontak</a>
@@ -112,10 +112,18 @@ export default function Navbar() {
             </h1>
           </a>
           <ul className="flex lg:gap-[30px] xl:gap-16 xl:text-xl text-primary lg:text-base font-medium items-center gap-3">
-            <li className="cursor-pointer"><a href="/">Home</a></li>
-            <li className="cursor-pointer"><a href="/campaignPage">Kampanye</a></li>
-            <li className="cursor-pointer"><a href="/articlePage">Artikel</a></li>
-            <li className="cursor-pointer"><a href="/contact">kontak</a></li>
+            <li className="cursor-pointer">
+              <a href="/">Home</a>
+            </li>
+            <li className="cursor-pointer">
+              <a href="/campaigns">Kampanye</a>
+            </li>
+            <li className="cursor-pointer">
+              <a href="/articles">Artikel</a>
+            </li>
+            <li className="cursor-pointer">
+              <a href="">kontak</a>
+            </li>
           </ul>
           {isLogin ? (
             <a className="flex items-center gap-2" href="/dashboard">

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../pageSection/navBar";
+import Navbar from "../pageSection/navbar";
 import Footer from "../pageSection/footer";
 import BlogCard from "../component/blogCard";
 import { useParams } from "react-router-dom";

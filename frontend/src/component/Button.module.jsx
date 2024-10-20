@@ -28,12 +28,12 @@ export function JoinButton({ link }) {
   );
 }
 
-export function CampaignButton({ link }) {
+export function CampaignButton({ link, className = "" }) {
   return (
     <div className="flex justify-center">
       <a
         href={link}
-        className="btn rounded-full px-6 py-2 font-bold text-primary bg-neutral shadow-lg"
+        className={`btn rounded-full px-6 py-2 font-bold text-primary bg-neutral shadow-lg ${className}`}
       >
         Lihat Detail
       </a>
