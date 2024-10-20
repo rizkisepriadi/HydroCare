@@ -76,10 +76,10 @@ export default function Navbar() {
                   <a href="/campaignPage">Kampanye</a>
                 </li>
                 <li className="cursor-pointer">
-                  <a href="">Artikel</a>
+                  <a href="/articlePage">Artikel</a>
                 </li>
                 <li className="cursor-pointe">
-                  <a href="/articlePage">Kontak</a>
+                  <a href="/contact">Kontak</a>
                 </li>
                 <div className="flex gap-2">
                   <Button
@@ -115,7 +115,7 @@ export default function Navbar() {
             <li className="cursor-pointer"><a href="/">Home</a></li>
             <li className="cursor-pointer"><a href="/campaignPage">Kampanye</a></li>
             <li className="cursor-pointer"><a href="/articlePage">Artikel</a></li>
-            <li className="cursor-pointer"><a href="">kontak</a></li>
+            <li className="cursor-pointer"><a href="/contact">kontak</a></li>
           </ul>
           {isLogin ? (
             <a className="flex items-center gap-2" href="/dashboard">

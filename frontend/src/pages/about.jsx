@@ -3,6 +3,9 @@ import Developer1 from "../assets/dev1.svg";
 import Developer2 from "../assets/dev2.svg";
 import Developer3 from "../assets/dev3.svg";
 import Footer from "../pageSection/footer.jsx";
+import Linkedln from "../assets/linkedin.svg";
+import Facebook from "../assets/facebook.svg";
+import InstagramContact from "../assets/instagramContact.svg";
 
 export default function About() {
     return (
@@ -24,9 +27,19 @@ export default function About() {
                           className="w-full h-full bg-center bg-cover rounded-xl"
                         />
                     </div>
-                    <div className="pt-2">
+                    <div className="pt-2 text-center">
                         <h1 className="font-bold xl:text-xl">Muhammad Rizki Sepriadi</h1>
-                        
+                        <div className="flex justify-center p-3 mt-2 bg-[#EAF3F9] rounded-xl">
+                            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="mr-4">
+                                <img src={Facebook} alt="Facebook" className="w-8 h-8 shadow-custom" />
+                            </a>
+                            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" className="mr-4">
+                                <img src={InstagramContact} alt="Twitter" className="w-8 h-8 shadow-custom" />
+                            </a>
+                            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                                <img src={Linkedln} alt="Instagram" className="w-8 h-8 shadow-custom" />
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div className="pb-5 w-[190px] md:w-auto">
@@ -37,9 +50,19 @@ export default function About() {
                           className="w-full h-full bg-center bg-cover rounded-xl"
                         />
                     </div>
-                    <div className="pt-2">
-                        <h1 className="font-bold xl:text-xl">Jimmy Maulana</h1>
-                        
+                    <div className="pt-2 text-center">
+                        <h1 className="font-bold xl:text-xl">Jimmy<br className="md:hidden"/>Maulana</h1>
+                        <div className="flex justify-center p-3 mt-2 bg-[#EAF3F9] rounded-xl">
+                            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="mr-4">
+                                <img src={Facebook} alt="Facebook" className="w-8 h-8 shadow-custom" />
+                            </a>
+                            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" className="mr-4">
+                                <img src={InstagramContact} alt="Twitter" className="w-8 h-8 shadow-custom" />
+                            </a>
+                            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                                <img src={Linkedln} alt="Instagram" className="w-8 h-8 shadow-custom" />
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div className="pb-5 w-[190px] md:w-auto">
@@ -50,9 +73,19 @@ export default function About() {
                           className="w-full h-full bg-center bg-cover rounded-xl"
                         />
                     </div>
-                    <div className="pt-2">
+                    <div className="pt-2 text-center">
                         <h1 className="font-bold xl:text-xl">M.Akbar Kevin</h1>
-                        
+                        <div className="flex justify-center p-3 mt-2 bg-[#EAF3F9] rounded-xl">
+                            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="mr-4">
+                                <img src={Facebook} alt="Facebook" className="w-8 h-8 shadow-custom" />
+                            </a>
+                            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" className="mr-4">
+                                <img src={InstagramContact} alt="Twitter" className="w-8 h-8 shadow-custom" />
+                            </a>
+                            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                                <img src={Linkedln} alt="Instagram" className="w-8 h-8 shadow-custom" />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

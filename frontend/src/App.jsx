@@ -8,6 +8,7 @@ import PrivacyPolicy from "./pages/privacyPolicy.jsx";
 import TermsOfService from "./pages/termsOfService.jsx";
 import CampaignPage from "./pages/campaignPage.jsx";
 import ArticlePage from "./pages/articlePage.jsx";
+import Contact from "./pages/contact.jsx";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Route path="/privacyPolicy" element={<PrivacyPolicy />}/>
       <Route path="/termsOfService" element={<TermsOfService />}/>
       <Route path="/articlePage" element={<ArticlePage />}/>
+      <Route path="/contact" element={<Contact />}/>
     </Routes>
   );
 }
