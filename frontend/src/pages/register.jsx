@@ -13,10 +13,11 @@ export default function Register({ isOpen, setIsOpen }) {
   const { enqueueSnackbar } = useSnackbar();
   const { signup, isLoading, error } = useSignup();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Mencegah refresh halaman saat mengirim form
     try {
       await signup(name, email, password);
-      enqueueSnackbar("Register successful", {
+      enqueueSnackbar("Registration successful", {
         variant: "success",
         autoHideDuration: 500,
       });
@@ -24,11 +25,10 @@ export default function Register({ isOpen, setIsOpen }) {
         window.location.reload();
       }, 3000);
     } catch (err) {
-      enqueueSnackbar(err.message || "Registration failed", {
+      enqueueSnackbar(error || "Registration failed", {
         variant: "error",
         autoHideDuration: 3000,
       });
-      console.error(err);
     }
   };
 
@@ -56,7 +56,7 @@ export default function Register({ isOpen, setIsOpen }) {
       >
         <div className="flex items-center justify-center gap-1">
           <img src={Logo} alt="Logo" className="size-6" />
-          <h1 className="font-bold text-xl">Welcome to Hydrocare </h1>
+          <h1 className="font-bold text-xl">Welcome to Hydrocare</h1>
         </div>
         <p className="text-sm text-center font-medium pb-4">
           Daftarkan diri mu segera
@@ -66,7 +66,7 @@ export default function Register({ isOpen, setIsOpen }) {
           <Input
             type="text"
             value={name}
-            placeholder="Enter Your Email"
+            placeholder="Enter Your Name" // Ubah placeholder
             onChange={(e) => setName(e.target.value)}
             required
           />
@@ -88,15 +88,16 @@ export default function Register({ isOpen, setIsOpen }) {
           />
           <input
             type="submit"
-            value="Masuk"
+            value="Daftar" // Ubah text button
             className="btn btn-primary text-white"
+            disabled={isLoading} // Nonaktifkan tombol saat loading
           />
         </form>
         <div className="flex flex-col items-center pt-3 font-semibold">
           <div className="flex gap-2">
-            <p>Tidak punya akun?</p>
-            <a href="/register" className="font-bold">
-              Daftar Sekarang
+            <p>Sudah punya akun?</p>
+            <a href="/login" className="font-bold">
+              Masuk Sekarang
             </a>
           </div>
           <div className="flex gap-2">

@@ -11,6 +11,15 @@ export default function Article() {
 
   useEffect(() => {
     // Jika user terautentikasi, ambil informasi user
+    axios
+      .get(`http://localhost:5000/article`)
+      .then((response) => {
+        setArticles(response.data.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching articles:", err);
+      });
+
     if (user && user.token) {
       const decoded = jwtDecode(user.token);
       axios
@@ -21,18 +30,6 @@ export default function Article() {
         })
         .then((response) => {
           setisUser(response.data);
-          axios
-            .get(`http://localhost:5000/article`, {
-              headers: {
-                Authorization: `Bearer ${user.token}`,
-              },
-            })
-            .then((response) => {
-              setArticles(response.data.data);
-            })
-            .catch((err) => {
-              console.error("Error fetching articles:", err);
-            });
         })
         .catch((err) => {
           console.error("Error fetching user data:", err);

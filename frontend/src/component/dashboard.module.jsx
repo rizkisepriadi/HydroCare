@@ -165,49 +165,95 @@ export function ProfileSection() {
 }
 
 export function KampanyeSection() {
+  const { user } = useAuthContext();
+  const [isUser, setisUser] = useState({});
+  const [campaign, setCampaign] = useState([]);
+
+  useEffect(() => {
+    if (user && user.token) {
+      const decoded = jwtDecode(user.token);
+      axios
+        .get(`http://localhost:5000/user/${decoded._id}`, {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        })
+        .then((response) => {
+          setisUser(response.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (isUser._id) {
+      axios
+        .get(`http://localhost:5000/user/${isUser._id}/campaigns`, {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        })
+        .then((response) => {
+          setCampaign(response.data.campaigns);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, [isUser]);
+
+  const ongoingCampaigns = campaign.filter((item) => !item.finished);
+  const followedCampaigns = campaign.filter((item) => item.finished);
+
   return (
     <div>
       <div className="pb-5">
         <h3 className="mb-4 text-xl font-semibold">Sedang Berlangsung</h3>
         <ul className="pl-5 list-disc xl:text-lg">
-          <li className="mb-2 xl:text-lg">
-            <p className="text-base font-bold xl:text-lg">
-              Cara Untuk Melakukan Penghematan Air di Rumah - HydroCare
-            </p>
-            <p className="text-xs font-medium xl:text-base">
-              Selesai: 11 Oct 2024 17:00
-            </p>
-          </li>
-          <li className="mb-2">
-            <p className="text-base font-bold xl:text-lg">
-              Cara Untuk Menghemat Energi - HydroCare
-            </p>
-            <p className="text-xs font-medium xl:text-base">
-              Selesai: 12 Oct 2024 18:00
-            </p>
-          </li>
+          {ongoingCampaigns.length > 0 ? (
+            ongoingCampaigns.map((item) => (
+              <li key={item._id} className="mb-2 xl:text-lg">
+                <p className="text-base font-bold xl:text-lg">{item.title}</p>
+                <div className="flex gap-1 text-xs font-medium xl:text-base">
+                  <p>Selesai:</p>
+                  {item.end_date &&
+                    new Date(item.end_date).toLocaleDateString("id-ID", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                </div>
+              </li>
+            ))
+          ) : (
+            <p>Tidak ada kampanye yang sedang diikuti.</p>
+          )}
         </ul>
       </div>
 
       <div>
         <h3 className="mb-4 text-xl font-semibold">Telah Diikuti</h3>
         <ul className="pl-5 list-disc xl:text-lg">
-          <li className="mb-2">
-            <p className="text-base font-bold xl:text-lg">
-              Cara Untuk Melakukan Penghematan Air di Rumah - HydroCare
-            </p>
-            <p className="text-xs font-medium xl:text-base">
-              Selesai: 11 Oct 2024 17:00
-            </p>
-          </li>
-          <li className="mb-2">
-            <p className="text-base font-bold xl:text-lg">
-              Cara Untuk Menghemat Energi - HydroCare
-            </p>
-            <p className="text-xs font-medium xl:text-base">
-              Selesai: 12 Oct 2024 18:00
-            </p>
-          </li>
+          {followedCampaigns.length > 0 ? (
+            followedCampaigns.map((item) => (
+              <li key={item._id} className="mb-2 xl:text-lg">
+                <p className="text-base font-bold xl:text-lg">{item.title}</p>
+                <div className="flex gap-1 text-xs font-medium xl:text-base">
+                  <p>Selesai:</p>
+                  {item.end_date &&
+                    new Date(item.end_date).toLocaleDateString("id-ID", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                </div>
+              </li>
+            ))
+          ) : (
+            <p>Tidak ada kampanye yang pernah diikuti.</p>
+          )}
         </ul>
       </div>
     </div>
@@ -286,7 +332,10 @@ export function AkunSection() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="p-2 border rounded-xl border-[#0063A7]">
+      <form
+        onSubmit={handleSubmit}
+        className="p-2 border rounded-xl border-[#0063A7]"
+      >
         <h1 className="text-xl font-bold">Ganti Password</h1>
         <input
           type="password"
