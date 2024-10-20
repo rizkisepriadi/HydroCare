@@ -79,7 +79,7 @@ export default function Navbar() {
                   <a href="/articles">Artikel</a>
                 </li>
                 <li className="cursor-pointe">
-                  <a href="/articlePage">Kontak</a>
+                  <a href="/contact">Kontak</a>
                 </li>
                 <div className="flex gap-2">
                   <Button

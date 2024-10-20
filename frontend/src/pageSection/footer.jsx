@@ -32,9 +32,9 @@ export default function Footer() {
         <div>
           <h1 className="text-xl font-bold xl:text-2xl">Informasi</h1>
           <ul className="flex flex-col gap-2 pt-3 lg:gap-1 xl:gap-3 xl:text-lg">
-            <li className="cursor-pointer"><a href="">Blog</a></li>
-            <li className="cursor-pointer"><a href="">Contact</a></li>
-            <li className="cursor-pointer"><a href="">Bantuan</a></li>
+            <li className="cursor-pointer"><a href="/campaignPage">Kampanye</a></li>
+            <li className="cursor-pointer"><a href="/article">Artikel</a></li>
+            <li className="cursor-pointer"><a href="/contact">Kontak</a></li>
           </ul>
         </div>
       </div>
