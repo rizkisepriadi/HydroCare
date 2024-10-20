@@ -68,9 +68,9 @@ export default function campaigns() {
               </h1>
               <p className="mt-2 text-justify break-words whitespace-normal">
                 {campaign.desc
-                  ? campaign.desc.split(" ").slice(0, 80).join(" ")
+                  ? campaign.desc.split(" ").slice(0, 50).join(" ")
                   : "Deskripsi tidak tersedia."}
-                {campaign.desc && campaign.desc.split(" ").length > 80 && "..."}
+                {campaign.desc && campaign.desc.split(" ").length > 50 && "..."}
               </p>
 
               <h2 className="pt-2 text-lg font-semibold">Lokasi</h2>
