@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export const useLogin = () => {
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(null);
+  const [isLoading, setIsLoading] = useState(false); // Perbaiki nilai awal
   const { dispatch } = useAuthContext();
   const navigate = useNavigate();
 
@@ -27,6 +27,7 @@ export const useLogin = () => {
         console.log("Error:", json.error);
         setIsLoading(false);
         setError(json.error);
+        throw new Error(json.error); // Lempar error untuk ditangkap oleh komponen
       } else {
         console.log("Login successful:", json);
         localStorage.setItem("user", JSON.stringify(json));
@@ -38,6 +39,7 @@ export const useLogin = () => {
       console.log("Error:", err);
       setIsLoading(false);
       setError(err.message);
+      throw err; // Lempar error untuk ditangkap oleh komponen
     }
   };
 
