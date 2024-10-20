@@ -13,6 +13,9 @@ const feedbackSchema = mongoose.Schema(
     position: {
       type: String,
     },
+    image: {
+      type: String
+    }
   },
   {
     timestamps: true,

@@ -1,14 +1,14 @@
 import React from "react";
-import BlogImage from "../assets/blog.svg";
 
 export default function BlogCard({ article }) {
   return (
-    <a href={`/article/${article._id}`}
+    <a
+      href={`/article/${article._id}`}
       className="card card-side lg:card bg-base-200 shadow-xl lg:w-[250px] xl:w-[300px] xl:h-[400px] text-primary"
     >
       <figure className="px-3 py-3 w-1/2 lg:w-full">
         <img
-          src={BlogImage}
+          src={`/image/${article.image}.svg`}
           alt="Article"
           className="rounded-xl w-full h-full"
         />

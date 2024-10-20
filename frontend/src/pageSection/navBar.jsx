@@ -14,8 +14,8 @@ export default function Navbar() {
   const [openlogin, setOpenLogin] = useState(false);
   const [openRegister, setOpenRegister] = useState(false);
   const [isUser, setisUser] = useState({});
-  const { user } = useAuthContext();
   const [isLogin, setisLogin] = useState(false);
+  const { user } = useAuthContext();
 
   useEffect(() => {
     if (user && user.token) {
@@ -124,8 +124,8 @@ export default function Navbar() {
                 className="rounded-full w-[30px] h-[30px] lg:w-[40px] lg:h-[40px] xl:w-[45px] xl:h-[45px]"
               />
               <div className="flex flex-col text-primary">
-                <h1 className="text-lg font-extrabold">{isUser.name}</h1>
-                <p className="text-sm font-medium">{isUser.email}</p>
+                <h1 className="text-sm xl:text-lg font-bold">{isUser.name}</h1>
+                <p className="text-xs xl:text-sm font-medium">{isUser.email}</p>
               </div>
             </a>
           ) : (

@@ -113,7 +113,7 @@ export default function Campaign() {
       <Navbar />
       <div className="relative h-[213.029px] md:h-[400px]">
         <img
-          src={CampaignImage}
+          src={`/image/${campaign.image}.svg`}
           alt=""
           className="w-full h-full object-cover"
         />
@@ -123,7 +123,7 @@ export default function Campaign() {
           <div className="avatar">
             <div className="w-[120px] lg:w-36 xl:w-44 rounded">
               <img
-                src={CampaignImage}
+                src={`/image/${campaign.image}.svg`}
                 alt="Border"
                 className="bg-cover bg-center h-full w-full"
               />

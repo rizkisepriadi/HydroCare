@@ -2,8 +2,38 @@ import express from "express";
 import { User } from "../model/userModel.js";
 import jwt from "jsonwebtoken";
 import requireAuth from "../middleware/requireAuth.js";
+import multer from "multer";
+import path from "path";
 
 const router = express.Router();
+
+// Setup multer for image upload
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/images"); // Set the destination folder for uploaded files
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`); // Rename file with timestamp to avoid conflicts
+  },
+});
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 1024 * 1024 * 5 }, // Limit file size to 5MB
+  fileFilter: (req, file, cb) => {
+    const fileTypes = /jpeg|jpg|png/;
+    const extname = fileTypes.test(
+      path.extname(file.originalname).toLowerCase()
+    );
+    const mimetype = fileTypes.test(file.mimetype);
+
+    if (mimetype && extname) {
+      return cb(null, true);
+    } else {
+      cb(new Error("Only images (jpeg, jpg, png) are allowed"));
+    }
+  },
+});
 
 // Utility function to generate JWT token
 const createToken = (_id) => {
@@ -34,10 +64,34 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.use(requireAuth);
+router.post(
+  "/user/:id/upload",
+  requireAuth,
+  upload.single("image"),
+  async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ message: "No file uploaded" });
+      }
 
-// Route for campaign participation
-router.post("/user/:id/participate", async (req, res) => {
+      const imagePath = `/images/${req.file.filename}`;
+      const user = await User.findByIdAndUpdate(
+        req.params.id,
+        { image: imagePath },
+        { new: true }
+      );
+
+      return res
+        .status(200)
+        .json({ message: "Image uploaded successfully", image: user.image });
+    } catch (error) {
+      return res.status(500).json({ message: error.message });
+    }
+  }
+);
+
+// Route for campaign participation - Protected route
+router.post("/user/:id/participate", requireAuth, async (req, res) => {
   try {
     const userId = req.user._id;
     const campaignId = req.params.id;
@@ -60,7 +114,8 @@ router.post("/user/:id/participate", async (req, res) => {
   }
 });
 
-router.get("/user/:id/campaigns", async (req, res) => {
+// Route to fetch user campaigns - Protected route
+router.get("/user/:id/campaigns", requireAuth, async (req, res) => {
   try {
     const user = await User.findById(req.params.id).populate("campaigns");
 
@@ -79,8 +134,8 @@ router.get("/user/:id/campaigns", async (req, res) => {
   }
 });
 
-// Route to fetch user details
-router.get("/user/:id", async (req, res) => {
+// Route to fetch user details - Protected route
+router.get("/user/:id", requireAuth, async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     return res.status(200).json(user);
@@ -89,12 +144,14 @@ router.get("/user/:id", async (req, res) => {
   }
 });
 
-// Route to update user account details
-router.put("/user/:id/formaccount", async (req, res) => {
+// Route to update user account details - Protected route
+router.put("/user/:id/formaccount", requireAuth, async (req, res) => {
   try {
     const { name, telp, birth_date, city } = req.body;
     const data = { name, telp, birth_date, city };
-    const user = await User.findByIdAndUpdate(req.params.id, data);
+    const user = await User.findByIdAndUpdate(req.params.id, data, {
+      new: true,
+    });
 
     return res.status(200).json(user);
   } catch (error) {
@@ -102,8 +159,8 @@ router.put("/user/:id/formaccount", async (req, res) => {
   }
 });
 
-// Route to update user security details (password)
-router.put("/user/:id/formsecurity", async (req, res) => {
+// Route to update user security details (password) - Protected route
+router.put("/user/:id/formsecurity", requireAuth, async (req, res) => {
   try {
     const { oldPassword, newPassword, retypePassword } = req.body;
 

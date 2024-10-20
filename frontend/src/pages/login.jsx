@@ -8,7 +8,7 @@ export default function Login({ isOpen, setIsOpen }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { enqueueSnackbar } = useSnackbar();
-  const { login, isLoading } = useLogin();
+  const { login, isLoading, error } = useLogin();
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevents the form from reloading the page
@@ -20,7 +20,7 @@ export default function Login({ isOpen, setIsOpen }) {
       });
       window.location.reload() 
     } catch (err) {
-      enqueueSnackbar(err.message || "Login failed", {
+      enqueueSnackbar(error || "Login failed", {
         variant: "error",
         autoHideDuration: 3000,
       });
