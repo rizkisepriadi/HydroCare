@@ -43,7 +43,7 @@ export default function Article() {
         Article
       </h1>
       <div className="flex flex-col">
-        <a href="#" className="flex justify-end text-primary pb-2">
+        <a href="/articlePage" className="flex justify-end text-primary pb-2">
           Lihat Semua
         </a>
         <div className="flex flex-col lg:flex-row lg:justify-center gap-5 lg:gap-4 xl:gap-5">

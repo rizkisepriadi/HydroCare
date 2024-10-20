@@ -13,7 +13,7 @@ router.post("/feedback", requireAuth, async (req, res) => {
       return res.status(400).json({ message: "Please provide name and desc" });
     }
 
-    const newFeedback = { name, desc, positionm, image };
+    const newFeedback = { name, desc, position, image };
     const feedback = await Feedback.create(newFeedback);
 
     return res.status(200).json(feedback);

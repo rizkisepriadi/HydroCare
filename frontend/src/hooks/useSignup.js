@@ -18,10 +18,8 @@ export const useSignup = () => {
         password,
       });
 
-      // Simpan user ke local storage
       localStorage.setItem("user", JSON.stringify(response.data));
 
-      // Perbarui konteks auth
       dispatch({ type: "LOGIN", payload: response.data });
 
       setIsLoading(false);
@@ -29,7 +27,7 @@ export const useSignup = () => {
       setIsLoading(false);
       const errorMessage = err.response?.data?.message || "Registration failed";
       setError(errorMessage);
-      throw new Error(errorMessage); // Lempar error untuk ditangkap oleh komponen
+      throw new Error(errorMessage);
     }
   };
 

@@ -1,6 +1,5 @@
 import React from "react";
-import CampaignImage from "../assets/Temp.svg";
-import Navbar from "../pageSection/navBar";
+import Navbar from "../pageSection/navbar";
 import Footer from "../pageSection/footer";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useEffect, useState } from "react";
