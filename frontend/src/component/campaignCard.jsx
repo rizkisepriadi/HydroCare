@@ -18,6 +18,7 @@ export default function CampaignCard({
   const [openRegister, setOpenRegister] = useState(false);
   const { user } = useAuthContext();
 
+  // Memeriksa status autentikasi pengguna
   useEffect(() => {
     if (user && user.token) {
       setisLogin(true);
@@ -34,32 +35,32 @@ export default function CampaignCard({
         />
       </figure>
       <div className="card-body">
-        <h1 className="text-center text-xl font-bold md:text-left lg:text-2xl">
+        <h1 className="text-xl font-bold text-center md:text-left lg:text-2xl">
           {title}
         </h1>
         <div className="flex flex-col gap-2">
           <div>
             <p className="text-sm lg:text-lg">Tanggal Acara</p>
-            <p className="lg:text-xl font-semibold">
+            <p className="font-semibold lg:text-xl">
               {start} - {end}
             </p>
           </div>
           <div>
             <p className="text-sm lg:text-lg">Pelaksanaan</p>
-            <p className="lg:text-xl font-semibold">{type}</p>
+            <p className="font-semibold lg:text-xl">{type}</p>
           </div>
           <div>
             <p className="text-sm lg:text-lg">Lokasi</p>
-            <p className="lg:text-xl font-semibold">{location}</p>
+            <p className="font-semibold lg:text-xl">{location}</p>
           </div>
         </div>
-        <div className="card-actions justify-end">
+        <div className="justify-end card-actions">
           {isLogin ? (
             <CampaignButton link={`/campaign/${id}`} />
           ) : (
             <Button
               text={"Login"}
-              className="text-primary bg-neutral shadow-lg"
+              className="shadow-lg text-primary bg-neutral"
               onClick={() => {
                 setOpenRegister(false);
                 setOpenLogin(true);

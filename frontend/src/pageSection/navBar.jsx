@@ -8,6 +8,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { useEffect } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import DefaultUser from "../assets/defaultUser.svg";
 
 export default function Navbar() {
   const isLargeScreen = useMediaQuery("(max-width: 768px)");
@@ -17,6 +18,7 @@ export default function Navbar() {
   const [isLogin, setisLogin] = useState(false);
   const { user } = useAuthContext();
 
+  // Mengambil data pengguna saat komponen dimuat
   useEffect(() => {
     if (user && user.token) {
       const decoded = jwtDecode(user.token);
@@ -128,12 +130,12 @@ export default function Navbar() {
           {isLogin ? (
             <a className="flex items-center gap-2" href="/dashboard">
               <img
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                src={DefaultUser}
                 className="rounded-full w-[30px] h-[30px] lg:w-[40px] lg:h-[40px] xl:w-[45px] xl:h-[45px]"
               />
               <div className="flex flex-col text-primary">
-                <h1 className="text-sm xl:text-lg font-bold">{isUser.name}</h1>
-                <p className="text-xs xl:text-sm font-medium">{isUser.email}</p>
+                <h1 className="text-sm font-bold xl:text-lg">{isUser.name}</h1>
+                <p className="text-xs font-medium xl:text-sm">{isUser.email}</p>
               </div>
             </a>
           ) : (

@@ -7,6 +7,7 @@ export const useSignup = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { dispatch } = useAuthContext();
 
+  // Fungsi untuk menangani pendaftaran pengguna baru
   const signup = async (name, email, password) => {
     setIsLoading(true);
     setError(null);

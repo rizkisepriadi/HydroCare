@@ -8,6 +8,7 @@ export const useLogin = () => {
   const { dispatch } = useAuthContext();
   const navigate = useNavigate();
 
+  // Fungsi untuk menangani proses login pengguna
   const login = async (email, password) => {
     console.log("Sending request to login...");
     setIsLoading(true);

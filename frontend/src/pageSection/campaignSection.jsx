@@ -12,6 +12,7 @@ export default function campaignSection() {
   const [isLogin, setisLogin] = useState(false);
   const [campaign, setCampaign] = useState({});
 
+  // Mengambil data kampanye dan informasi pengguna saat komponen dimuat atau ketika objek user berubah
   useEffect(() => {
     axios
       .get(`http://localhost:5000/campaign/6711f9da7c87821737ba1b56`)
@@ -37,6 +38,7 @@ export default function campaignSection() {
     }
   }, [user]);
 
+  // Fungsi untuk mengonversi tanggal dari format ISO ke format yang lebih mudah dibaca (DD Bulan YYYY).
   function convertDate(date) {
     const dateObj = new Date(date);
     const day = String(dateObj.getDate()).padStart(2, "0");
@@ -62,7 +64,7 @@ export default function campaignSection() {
 
   return (
     <div className="px-[7%]">
-      <h1 className="text-primary text-xl font-extrabold text-center lg:pt-10 xl:pt-20 lg:mb-5 py-10 md:text-2xl">
+      <h1 className="py-10 text-xl font-extrabold text-center text-primary lg:pt-10 xl:pt-20 lg:mb-5 md:text-2xl">
         Ikuti Kampanye
       </h1>
       <div className="flex flex-col items-center">
