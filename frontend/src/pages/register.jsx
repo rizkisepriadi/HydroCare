@@ -4,6 +4,7 @@ import Input from "../component/inputBar.jsx";
 import { useSnackbar } from "notistack";
 import { useSignup } from "../hooks/useSignup";
 import { useNavigate } from "react-router-dom";
+import validator from "validator";
 
 export default function Register({ isOpen, setIsOpen }) {
   const [name, setName] = useState("");
@@ -15,9 +16,21 @@ export default function Register({ isOpen, setIsOpen }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validator.isStrongPassword(password)) {
+      enqueueSnackbar(
+        "Password tidak cukup kuat. Gunakan minimal 8 karakter dengan kombinasi huruf besar, huruf kecil, angka, dan simbol.",
+        {
+          variant: "warning",
+          autoHideDuration: 3000,
+        }
+      );
+      return;
+    }
+
     try {
       await signup(name, email, password);
-      enqueueSnackbar("Registration successful", {
+      enqueueSnackbar("Pendaftaran berhasil", {
         variant: "success",
         autoHideDuration: 500,
       });
@@ -25,7 +38,7 @@ export default function Register({ isOpen, setIsOpen }) {
         window.location.reload();
       }, 3000);
     } catch (err) {
-      enqueueSnackbar(error || "Registration failed", {
+      enqueueSnackbar(error || "Pendaftaran gagal", {
         variant: "error",
         autoHideDuration: 3000,
       });
@@ -95,14 +108,8 @@ export default function Register({ isOpen, setIsOpen }) {
         </form>
         <div className="flex flex-col items-center pt-3 font-semibold">
           <div className="flex gap-2">
-            <p>Sudah punya akun?</p>
-            <a href="/login" className="font-bold">
-              Masuk Sekarang
-            </a>
-          </div>
-          <div className="flex gap-2">
             <p>Butuh bantuan?</p>
-            <a href="/" className="font-bold">
+            <a href="/contact" className="font-bold">
               Hubungi Kami
             </a>
           </div>

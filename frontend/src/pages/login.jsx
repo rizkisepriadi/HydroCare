@@ -14,13 +14,13 @@ export default function Login({ isOpen, setIsOpen }) {
     e.preventDefault();
     try {
       await login(email, password);
-      enqueueSnackbar("Login successful", {
+      enqueueSnackbar("Login Berhasil", {
         variant: "success",
         autoHideDuration: 500,
       });
       window.location.reload() 
     } catch (err) {
-      enqueueSnackbar(error || "Login failed", {
+      enqueueSnackbar(error || "Login Gagal", {
         variant: "error",
         autoHideDuration: 3000,
       });
@@ -78,7 +78,7 @@ export default function Login({ isOpen, setIsOpen }) {
               <input type="checkbox" name="remember" id="remember" />
               <p>Ingat saya?</p>
             </div>
-            <a href="/forgot-password" className="font-bold">
+            <a href="/contact" className="font-bold">
               Lupa password?
             </a>
           </div>
@@ -92,14 +92,8 @@ export default function Login({ isOpen, setIsOpen }) {
         </form>
         <div className="flex flex-col items-center pt-3 font-semibold">
           <div className="flex gap-2">
-            <p>Tidak punya akun?</p>
-            <a href="/register" className="font-bold">
-              Daftar Sekarang
-            </a>
-          </div>
-          <div className="flex gap-2">
             <p>Butuh bantuan?</p>
-            <a href="/" className="font-bold">
+            <a href="/contact" className="font-bold">
               Hubungi Kami
             </a>
           </div>
