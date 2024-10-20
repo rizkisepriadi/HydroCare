@@ -14,6 +14,7 @@ export default function Register({ isOpen, setIsOpen }) {
   const { enqueueSnackbar } = useSnackbar();
   const { signup, isLoading, error } = useSignup();
 
+  // Menghandle pengiriman formulir pendaftaran
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -45,10 +46,12 @@ export default function Register({ isOpen, setIsOpen }) {
     }
   };
 
+  // Menutup modal
   const closeModal = () => {
     setIsOpen(false);
   };
 
+  // Menangani klik di luar modal untuk menutupnya
   const handleClickOutside = (e) => {
     if (e.target.id === "overlay") {
       closeModal();
@@ -69,9 +72,9 @@ export default function Register({ isOpen, setIsOpen }) {
       >
         <div className="flex items-center justify-center gap-1">
           <img src={Logo} alt="Logo" className="size-6" />
-          <h1 className="font-bold text-xl">Welcome to Hydrocare</h1>
+          <h1 className="text-xl font-bold">Welcome to Hydrocare</h1>
         </div>
-        <p className="text-sm text-center font-medium pb-4">
+        <p className="pb-4 text-sm font-medium text-center">
           Daftarkan diri mu segera
         </p>
         <form onSubmit={handleSubmit} className="flex flex-col">
@@ -102,7 +105,7 @@ export default function Register({ isOpen, setIsOpen }) {
           <input
             type="submit"
             value="Daftar"
-            className="btn btn-primary text-white"
+            className="text-white btn btn-primary"
             disabled={isLoading}
           />
         </form>

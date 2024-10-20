@@ -10,6 +10,7 @@ export default function Login({ isOpen, setIsOpen }) {
   const { enqueueSnackbar } = useSnackbar();
   const { login, isLoading, error } = useLogin();
 
+  // Fungsi untuk menangani pengiriman form login
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -27,10 +28,12 @@ export default function Login({ isOpen, setIsOpen }) {
     }
   };
 
+  // Fungsi untuk menutup modal
   const closeModal = () => {
     setIsOpen(false);
   };
 
+  // Menangani klik di luar modal untuk menutup modal
   const handleClickOutside = (e) => {
     if (e.target.id === "overlay") {
       closeModal();
@@ -51,9 +54,9 @@ export default function Login({ isOpen, setIsOpen }) {
       >
         <div className="flex items-center justify-center gap-1">
           <img src={Logo} alt="Logo" className="size-6" />
-          <h1 className="font-bold text-xl">Welcome Back</h1>
+          <h1 className="text-xl font-bold">Welcome Back</h1>
         </div>
-        <p className="text-sm text-center font-medium pb-4">
+        <p className="pb-4 text-sm font-medium text-center">
           Masuk untuk tetap terhubung dengan kami.
         </p>
         <form onSubmit={handleSubmit} className="flex flex-col">
@@ -73,8 +76,8 @@ export default function Login({ isOpen, setIsOpen }) {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <div className="flex text-sm justify-between items-center mb-3">
-            <div className="flex gap-1 items-center">
+          <div className="flex items-center justify-between mb-3 text-sm">
+            <div className="flex items-center gap-1">
               <input type="checkbox" name="remember" id="remember" />
               <p>Ingat saya?</p>
             </div>
@@ -85,7 +88,7 @@ export default function Login({ isOpen, setIsOpen }) {
           <button
             type="submit"
             disabled={isLoading}
-            className="btn btn-primary text-white"
+            className="text-white btn btn-primary"
           >
             Masuk
           </button>

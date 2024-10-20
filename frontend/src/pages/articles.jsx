@@ -14,6 +14,7 @@ export default function articlePage() {
   const [article, setArticle] = useState({});
   const [articles, setArticles] = useState([]);
 
+  // Mengambil data artikel dan informasi pengguna saat komponen dimuat
   useEffect(() => {
     axios
       .get(`http://localhost:5000/article/67144c3ef5cb4005b095748e`)
@@ -78,7 +79,14 @@ export default function articlePage() {
               />
             </div>
             <div className="card-body md:w-[40%] px-0 md:px-4 lg:py-[7%]">
-              <p className="flex-grow-0 font-semibold">17 Oktober 2024</p>
+              <p className="flex-grow-0 font-semibold">
+                {article.createdAt &&
+                  new Date(article.createdAt).toLocaleDateString("id-ID", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                })}
+              </p>
               <h1 className="text-xl font-bold md:text-left lg:text-2xl">
                 {article.title}
               </h1>
@@ -110,12 +118,12 @@ export default function articlePage() {
         </div>
         <div className="flex flex-col px-[7%] mb-20 mt-5">
           <div className="flex flex-col gap-5">
-            <div className="flex flex-col lg:flex-row lg:justify-center gap-5 lg:gap-4 xl:gap-5">
+            <div className="flex flex-col gap-5 lg:flex-row lg:justify-center lg:gap-4 xl:gap-5">
               {articles.map((item) => (
                 <BlogCard key={item._id} article={item} />
               ))}
             </div>
-            <div className="flex flex-col lg:flex-row lg:justify-center gap-5 lg:gap-4 xl:gap-5">
+            <div className="flex flex-col gap-5 lg:flex-row lg:justify-center lg:gap-4 xl:gap-5">
               {articles.map((item) => (
                 <BlogCard key={item._id} article={item} />
               ))}

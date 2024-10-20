@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode"; 
 import Navbar from "../pageSection/navbar.jsx";
-import Campaign from "../pageSection/campaignSection.jsx";
-import Footer from "../pageSection/footer.jsx";
-import FAQ from "../pageSection/faq.jsx";
 import Hero from "../pageSection/hero.jsx";
 import Invitation from "../pageSection/invitation.jsx";
-import SectionThird from "../pageSection/sectionThird.jsx";
-import Article from "../pageSection/articleSection.jsx";
 import FeedBack from "../pageSection/feedBack.jsx";
+import SectionThird from "../pageSection/sectionThird.jsx";
+import Campaign from "../pageSection/campaignSection.jsx";
+import Article from "../pageSection/articleSection.jsx";
+import FAQ from "../pageSection/faq.jsx";
+import Footer from "../pageSection/footer.jsx";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { jwtDecode } from "jwt-decode";
+
 
 export default function Homepage() {
   const [isUser, setisUser] = useState({});
@@ -19,6 +19,7 @@ export default function Homepage() {
   const [isLogin, setisLogin] = useState(false);
 
   useEffect(() => {
+    // Memeriksa apakah pengguna terautentikasi dan mengambil data pengguna jika ada
     if (user && user.token) {
       const decoded = jwtDecode(user.token);
       axios

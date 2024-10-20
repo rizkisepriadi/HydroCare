@@ -16,6 +16,7 @@ export default function Article() {
   const [articles, setArticles] = useState([]);
   const [currentArticleId, setCurrentArticleId] = useState("");
 
+  // Mengambil data artikel dan informasi pengguna saat komponen dimuat
   useEffect(() => {
     axios
       .get(`http://localhost:5000/article/${id}`)
@@ -59,6 +60,7 @@ export default function Article() {
     }
   }, [user, id]);
 
+  // Fungsi untuk memperbarui ID artikel yang sedang dibaca
   const handleReadArticle = (articleId) => {
     setCurrentArticleId(articleId);
   };
@@ -67,13 +69,13 @@ export default function Article() {
     <div>
       <Navbar />
       <div className="px-[7%] pt-[10%] lg:pt-[11%] xl:pt-[10%] 2xl:pt-[7%]">
-        <div className="flex flex-col lg:flex-row lg:gap-5 xl:gap-8 pt-3 text-primary">
+        <div className="flex flex-col pt-3 lg:flex-row lg:gap-5 xl:gap-8 text-primary">
           <div>
-            <div className="flex justify-center items-start">
+            <div className="flex items-start justify-center">
               <img
                 src={`/image/${article.image}.svg`}
                 alt="Blog"
-                className="xl:w-full xl:mb-5 h-full bg-cover"
+                className="h-full bg-cover xl:w-full xl:mb-5"
               />
             </div>
             <div className="flex flex-col">
@@ -81,7 +83,7 @@ export default function Article() {
                 <h1 className="font-bold xl:text-3xl">
                   {article.title || "Loading..."}
                 </h1>
-                <div className="flex justify-between font-normal text-sm">
+                <div className="flex justify-between text-sm font-normal">
                   <p>{article.author || "Author Loading..."}</p>
                   {article.createdAt &&
                     new Date(article.createdAt).toLocaleDateString("id-ID", {
@@ -90,17 +92,17 @@ export default function Article() {
                       year: "numeric",
                     })}
                 </div>
-                <p className="border border-b border-primary mb-5"></p>
+                <p className="mb-5 border border-b border-primary"></p>
               </div>
 
-              <ReactMarkdown className="whitespace-pre-line pb-5 xl:text-lg prose">
+              <ReactMarkdown className="pb-5 prose whitespace-pre-line xl:text-lg">
                 {article.body || "Loading..."}
               </ReactMarkdown>
             </div>
           </div>
 
-          <div className="flex flex-col items-center gap-3 lg:items-start mb-5">
-            <h1 className="text-primary font-semibold xl:text-xl">
+          <div className="flex flex-col items-center gap-3 mb-5 lg:items-start">
+            <h1 className="font-semibold text-primary xl:text-xl">
               Baca artikel lainnya...
             </h1>
             {articles
